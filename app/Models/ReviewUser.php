@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ReviewUser extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+
+    ];
+
+    public function ratingUser(){
+        return $this->hasMany('App\Models\RatingUser');
+    }
 }

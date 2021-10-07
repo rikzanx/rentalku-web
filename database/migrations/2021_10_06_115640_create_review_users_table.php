@@ -15,7 +15,7 @@ class CreateReviewUsersTable extends Migration
     {
         Schema::create('review_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('review');
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

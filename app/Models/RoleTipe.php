@@ -9,7 +9,11 @@ class RoleTipe extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+    ];
+
     public function pengemudi(){
-        return $this->hasMany('App\Models\Role');
+        return $this->hasMany('App\Models\Pengemudi');
     }
 }

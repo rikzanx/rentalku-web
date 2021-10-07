@@ -9,6 +9,10 @@ class Deposit extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+    ];
+
     public function user(){
         return $this->hasOne('App\Models\User','id','user_id');
     }

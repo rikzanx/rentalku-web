@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ReviewKendaraan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+
+    ];
+
+        
+    public function ratingKendaraan(){
+        return $this->hasMany('App\Models\RatingKendaraan');
+    }
 }

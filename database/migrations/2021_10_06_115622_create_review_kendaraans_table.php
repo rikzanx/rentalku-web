@@ -15,7 +15,7 @@ class CreateReviewKendaraansTable extends Migration
     {
         Schema::create('review_kendaraans', function (Blueprint $table) {
             $table->id();
-            $table->integer('review');
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

@@ -9,6 +9,10 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+    ];
+
     public function pengemudi(){
         return $this->hasMany('App\Models\Pengemudi');
     }

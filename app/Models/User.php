@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,10 +21,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'level',
         'email',
         'password',
+        'image_link',
         'alamat',
-        'role',
+        'kota',
         'telp',
         'lat',
         'long'
@@ -77,6 +81,18 @@ class User extends Authenticatable
 
     public function deposit(){
         return $this->hasMany('App\Models\Deposit');
+    }
+
+    public function ratingKendaraan(){
+        return $this->hasMany('App\Models\RatingKendaraan');
+    }
+
+    public function ratingUser(){
+        return $this->hasMany('App\Models\RatingUser');
+    }
+
+    public function ratingUserTo(){
+        return $this->hasMany('App\Models\RatingUser');
     }
 
 }

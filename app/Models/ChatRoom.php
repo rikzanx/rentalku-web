@@ -9,6 +9,11 @@ class ChatRoom extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'user_id',
+        'user_to_id'
+    ];
+
     public function user(){
         return $this->hasOne('App\Models\User','id','user_id');
     }

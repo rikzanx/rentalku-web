@@ -9,6 +9,10 @@ class RatingKendaraan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+    ];
+
     public function user(){
         return $this->hasOne('App\Models\User','id','user_id');
     }
@@ -21,7 +25,4 @@ class RatingKendaraan extends Model
         return $this->hasOne('App\Models\ReviewKendaraan','id','review_kendaraan_id');
     }
 
-    public function ratingKendaraan(){
-        return $this->hasMany('App\Models\RatingKendaraan');
-    }
 }
