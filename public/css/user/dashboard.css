@@ -1,0 +1,31 @@
+.cari-rental{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    border: 0 !important;
+}
+.cari-rental:focus{
+    border:0 !important;
+}
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none;
+}
+.button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border: 0;
+    background-color: transparent;
+}
+.search-box{
+    position: relative;
+    background-color: green;
+    width: 300px;
+    height: 30px;
+    border-radius: 20px;
+}
+.text-px{
+    margin-left: 6rem;
+    margin-right: 6rem;
+}

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Penyewa\PenyewaAuthController;
+use App\Http\Controllers\User\UserAuthController;
+use App\Http\Controllers\Admin\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,21 +19,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 // Auth::routes();
-// Auth penyewa
-Route::get('login', [PenyewaAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [PenyewaAuthController::class, 'customLogin'])->name('login.custom'); 
-Route::get('registration', [PenyewaAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [PenyewaAuthController::class, 'customRegistration'])->name('register.custom'); 
-Route::get('signout', [PenyewaAuthController::class, 'signOut'])->name('signout');
-
-//home page
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('dashboard', [PenyewaAuthController::class, 'dashboard']); 
+// Auth user
+Route::get('login', [UserAuthController::class, 'index'])->name('user.login');
+Route::post('login', [UserAuthController::class, 'customLogin'])->name('user.login.action'); 
+Route::get('registration', [UserAuthController::class, 'registration'])->name('user.register');
+Route::post('registration', [UserAuthController::class, 'customRegistration'])->name('user.register.action'); 
+Route::get('logout', [UserAuthController::class, 'logOut'])->name('user.logout');
+//dashboard
+Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('user.dashboard'); 
 
 
 
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('login', [AdminAuthController::class, 'index'])->name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'customLogin'])->name('admin.login.action'); 
+    Route::get('registration', [AdminAuthController::class, 'registration'])->name('admin.register');
+    Route::post('registration', [AdminAuthController::class, 'customRegistration'])->name('admin.register.action'); 
+    Route::get('logout', [AdminAuthController::class, 'logOut'])->name('admin.logout');
     Route::get('/',[App\Http\Controllers\Admin\AdminDashboardController::class,'index'])->name('admin.dashboard');
-    Route::get('/login',[App\Http\Controllers\Admin\AdminDashboardController::class,'index'])->name('admin.login');
 });

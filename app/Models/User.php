@@ -95,4 +95,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\RatingUser');
     }
 
+    public function user_role(){
+        return $this->hasMay('App\Models\UserRole');
+    }
+
 }

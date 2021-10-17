@@ -16,4 +16,8 @@ class RoleTipe extends Model
     public function pengemudi(){
         return $this->hasMany('App\Models\Pengemudi');
     }
+
+    public function user_role(){
+        return $this->hasMay('App\Models\UserRole');
+    }
 }

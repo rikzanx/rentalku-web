@@ -15,7 +15,7 @@ class CreateRoleTipesTable extends Migration
     {
         Schema::create('role_tipes', function (Blueprint $table) {
             $table->id();
-            $table->text('name');//pemimpin atau anggota
+            $table->text('name');//penyewa atau pemilik atau driver
             $table->timestamps();
         });
     }
