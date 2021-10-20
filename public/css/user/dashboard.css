@@ -29,3 +29,6 @@ input[type="text"], input[type="password"], textarea, select {
     margin-left: 6rem;
     margin-right: 6rem;
 }
+#footer{
+    border-top: 1px solid #007a66 !important;
+}

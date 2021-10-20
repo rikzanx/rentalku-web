@@ -11,7 +11,8 @@ class ChatRoom extends Model
 
     protected $fillable =[
         'user_id',
-        'user_to_id'
+        'user_to_id',
+        'created_at'
     ];
 
     public function user(){
@@ -23,6 +24,6 @@ class ChatRoom extends Model
     }
 
     public function message(){
-        return $this->hasMany('App\Models\Message');
+        return $this->hasMany('App\Models\Message')->orderBy('id', 'DESC');
     }
 }

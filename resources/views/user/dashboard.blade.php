@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div id="head">
+    <div id="head">
         <div class="head-box">
 
             <img src="{{ asset('image/rectangle205.png') }}" class="img-fluid img-rectangle" alt="">
@@ -45,7 +45,28 @@
     <div id="mobil">
         <div class="container">
             <div class="row col-12">
-                
+            @for($i=0;$i<=3;$i++)
+                <div class="col-4 mb-3">
+                    <div class="box-border">
+                        <div class="img-box img-box-mobil">
+                        <img src="{{ asset('image/avanza.jpeg') }}" alt="" class="h-100 w-100">
+                        </div>
+                        <div class="row px-3">
+                            <div class="text-box text-box-left p-2 col-6">
+                                <label for="" class="mb-0">Mini mvp</label>
+                                <p class="mb-0"><b>Toyota Avanza</b></p>
+                                <p>Tanpa sopir</p>
+                            </div>
+                            <div class="text-box text-box-right p-2 col-6">
+                                <p class="text-right price mb-0">Rp. 300.000/ Hari</p>
+                                <p class="text-right mb-0 color-base"><i class="fa-solid fa-star star"></i> 5.0</p>
+                                <p class="text-right color-base"><i class=" fa-solid fa-user"></i> 6</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            @endfor
             </div>
         </div>
     </div>
@@ -56,13 +77,13 @@
                 <h1 class="mx-auto">Artikel</h1>
             </div>
             <div class="row col-12 mb-2">
-                <div class="col-4">
+                <div class="col-4 mb-3">
                     <div class="box-border">
                         <div class="img-box">
                             <img src="{{ asset('image/landscape1.png') }}" alt="" class="h-100 w-100">
                         </div>
                         <div class="textbox p-2">
-                        <label for="">otomotif</label>
+                        <label class="label-produk" for="">otomotif</label>
                         <p><b>Enam Teknik Mencuci Mobil yang Benar, Jangan Asal!</b></p>
                         </div>
                     </div>
@@ -84,7 +105,7 @@
                             <img src="{{ asset('image/landscape1.png') }}" alt="" class="h-100 w-100">
                         </div>
                         <div class="textbox p-2">
-                        <label for="">otomotif</label>
+                        <label class="label-produk" for="">otomotif</label>
                         <p><b>Enam Teknik Mencuci Mobil yang Benar, Jangan Asal!</b></p>
                         </div>
                     </div>

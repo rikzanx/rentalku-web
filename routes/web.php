@@ -26,10 +26,8 @@ Route::get('registration', [UserAuthController::class, 'registration'])->name('u
 Route::post('registration', [UserAuthController::class, 'customRegistration'])->name('user.register.action'); 
 Route::get('logout', [UserAuthController::class, 'logOut'])->name('user.logout');
 //dashboard
-Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('user.dashboard'); 
-
-
-
+Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('user.dashboard');
+Route::get('profile',[App\Http\Controllers\User\UserProfileController::class,'index'])->name('user.profile');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', [AdminAuthController::class, 'index'])->name('admin.login');

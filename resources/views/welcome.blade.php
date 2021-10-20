@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">Data Diri</a>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Data Diri</a>
                                     <a class="dropdown-item" href="">Jadi pemilik mobil</a>
                                     <a class="dropdown-item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
@@ -79,7 +79,7 @@
     <div id="head">
         <div class="head-box">
             <img src="{{ asset('image/rectangle205.png') }}" class="img-fluid img-rectangle" alt="">
-            <h1 class="text-white text-center text-head display-3">SEWA MOBIL DENGAN MUDAH DAN BERKUALITAS BERSAMA KAMI</h1>
+            <h1 class="text-white text-center text-head display-4">SEWA MOBIL DENGAN MUDAH DAN BERKUALITAS BERSAMA KAMI</h1>
             <img src="{{ asset('image/mobil-round.png') }}" alt="" class="mobil img-fluid mx-auto d-block">
         </div>
     </div>

@@ -31,13 +31,14 @@
                     <p class="small text-center">Silakan isi form disamping ini untuk pendaftaran akun RentalKu Anda!</p>
                 </div>
                 <div class="col-6 pt-4">
-                <form action="" class="mx-3">
+                <form action="{{ route('user.register.action') }}" method="POST" class="mx-3">
+                    @csrf
                     <label class="small">Nama lengkap anda</label>
-                    <input class="col-12" type="text" name="" id="" placeholder="muhammad">
+                    <input class="col-12" type="text" name="name" id="" placeholder="muhammad">
                     <label class="small">Email anda</label>
-                    <input class="col-12" type="email" name="" id="" placeholder="example@gmail.com">
+                    <input class="col-12" type="email" name="email" id="" placeholder="example@gmail.com">
                     <label class="small">Password anda</label>
-                    <input class="col-12" type="password" name="" id="" placeholder="******">
+                    <input class="col-12" type="password" name="password" id="" placeholder="******">
                     <label class="small">Ketik ulang password anda</label>
                     <input class="col-12" type="password" name="" id="" placeholder="******">
 
