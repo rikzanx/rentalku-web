@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\KendaraanController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,8 @@ Route::group(['prefix' => 'message'], function () {
     Route::post('/send',[UserMessageController::class, 'send_message'])->name('message.send');
 });
 
+//Kendaraan
 Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan');
+
+//User
+Route::get('/user', [UserController::class, 'index'])->name('user');
