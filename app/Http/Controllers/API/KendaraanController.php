@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kendaraan;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
@@ -12,9 +13,14 @@ class KendaraanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $kategori = request()->kategori_id;
+        $jenis = request()->jenis;
+        $tahun = request()->tahun;
+        $kendaraan = Kendaraan::with('user')->where('kategori_id', $kategori)->where('tahun', $tahun)->get();
+        
+        return response()->json($kendaraan, 200);
     }
 
     /**

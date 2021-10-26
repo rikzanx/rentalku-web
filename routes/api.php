@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\KendaraanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,5 @@ Route::group(['prefix' => 'message'], function () {
     Route::get('/room/message/{chat_room_id}',[UserMessageController::class, 'get_message_by_room'])->name('message.byroom');
     Route::post('/send',[UserMessageController::class, 'send_message'])->name('message.send');
 });
+
+Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan');
