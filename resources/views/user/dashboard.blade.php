@@ -9,11 +9,89 @@
         <div class="head-box">
 
             <img src="{{ asset('image/rectangle205.png') }}" class="img-fluid img-rectangle" alt="">
-            <div class="search-box mx-auto d-block">
-            <form action="" >
-                <input class="py-2 px-4 cari-rental d-block" type="text" name="" id="" placeholder="Cari di rentalku">
-                <button class="py-2 px-4 button"><i class="fa-solid fa-search"></i></button>
-            </form>
+            <div class="search-box-outer mx-auto d-block">
+                <div class="search-box">
+                <form action="" >
+                    <input class="py-2 px-4 cari-rental d-block" type="text" name="" id="" placeholder="Cari di rentalku">
+                    <button class="py-2 px-4 button"><i class="fa-solid fa-search"></i></button>
+                
+                </div>
+                
+                <div class="search-toggle-box pt-5 hidden">
+                    <p class="text-center mb-0">Pilihan Kota</p>
+                    <div class="kategori row px-4">
+                        <input class="filter-checkbox pilihanKota-surabaya" type="checkbox" name="pilihanKota" value="Surabaya" checked="checked" />
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small pilihankota-check" for="pilihanKota-surabaya" >Surabaya</div>
+                        </div>
+                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Jogjakart" checked="checked" />
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small pilihankota-check">Jogjakarta</div>
+                        </div>
+                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Bandung" />
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small pilihankota-check">Bandung</div>
+                        </div>
+                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Jakarta" />
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small pilihankota-check">Jakarta</div>
+                        </div>
+                    </div>
+
+                    <p class="text-center mb-0">Urutkan menurut</p>
+                    <div class="kategori row px-4">
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                    </div>
+
+                    <p class="text-center mb-0">Kapasitas penumpang</p>
+                    <div class="kategori row px-4">
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                    </div>
+
+                    <p class="text-center mb-0">Jenis Mobil</p>
+                    <div class="kategori row px-4">
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                        <div class="kategori-outer col-3 p-1">
+                            <div class="kategori-box text-center small">Surabaya</div>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <input type="submit" class="submit-search mx-auto" value="Cari">
+                    </div>
+                </div>
+                
+                </form>
             </div>
             <div class="text-px">
             <h2 class="text-white text-center text-head mt-4">
@@ -116,4 +194,32 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+                $('.button').click(function(e){
+                    if($('.search-toggle-box').hasClass("hidden")){
+                        $('.search-toggle-box').removeClass('hidden');
+                    }else{
+                        $('.search-toggle-box').addClass('hidden');
+                    }
+                    e.preventDefault();
+                });
+                $('.cari-rental').focus(function(){
+                    $('.search-toggle-box').removeClass('hidden');
+                });
+                $('.pilihankota-check').click(function(e){
+                    nama = $(e.currentTarget).text();
+                    var classList = $(e.currentTarget).attr("for");
+                    element = '.'+classList;
+                    if($(element).is(":checked")){
+                        $(element).prop('checked', false);
+                    }else{
+                        $(element).prop('checked', true);
+                    }                 
+                });
+        });
+    </script>
 @endsection

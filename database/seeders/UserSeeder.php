@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         DB::table("users")->insert([
             "name" => $faker->name(),
             "email" => $faker->safeEmail,
-            "password" => "erik12345",
+            "password" => "user123",
             "telp" => $faker->phoneNumber,
             "alamat" => $faker->address,
         ]);

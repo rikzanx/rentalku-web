@@ -223,12 +223,26 @@ div#footer\ mt-2{
     border: none;
 }
 .message{
-    background-color: #007a66;
+    background-color: hsl(170, 100%, 24%);
     color: white;
     border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    display: inline-block;
+    max-width: 80%; 
+    overflow-wrap: break-word;
+}
+.message-row{
+    display: flex;
+    
 }
 .message-own{
     background-color: #FFC700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+}
+.own{
+    display: flex;
+    flex-direction: row-reverse;
 }
 .back-btn{
     cursor: pointer;

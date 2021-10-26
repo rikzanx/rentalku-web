@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
         DB::table("users")->insert([
             "name" => "admin",
             "email" => "admin@gmail.com",
-            "password" => Hash::make("erik12345"),
+            "password" => Hash::make("admin"),
             "level" => "admin",
             "created_at" => Carbon::now()->format('Y-m-d H:i:s')
         ]);

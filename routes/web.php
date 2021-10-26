@@ -28,6 +28,7 @@ Route::get('logout', [UserAuthController::class, 'logOut'])->name('user.logout')
 //dashboard
 Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('user.dashboard');
 Route::get('profile',[App\Http\Controllers\User\UserProfileController::class,'index'])->name('user.profile');
+Route::get('search',[App\Http\Controllers\User\UserKendaraanController::class,'search'])->name('user.search');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', [AdminAuthController::class, 'index'])->name('admin.login');

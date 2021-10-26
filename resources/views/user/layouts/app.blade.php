@@ -126,20 +126,6 @@
     
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript">
-        function new_message(){
-            val = parseInt($('.notification').text());
-            val++;
-            $('.notification').text(val);
-            $('.notification').removeClass('hidden');
-            if(1 == 1){ //jika room open
-                $(".single-chat-room").append(
-                    `<div class="message my-1 col-12 message-own">
-                        new
-                    </div>`
-                );
-                $('.single-chat-room').scrollTop(100000000);
-            }
-        }
         function show_room(){
             $('.notification').addClass('hidden');
             $('.notification').text(0);
@@ -201,14 +187,19 @@
                             id = '{{ Auth::user()->id }}';
                             if(data[index]['user_id'] == id){
                                 $(".single-chat-room").append(
-                                    `<div class="message my-1 col-12 message-own">
+                                    `
+                                    <div class="message-row col-12 own">
+                                    <div class="message my-1 px-2 message-own">
                                         ${data[index]['message']}
+                                    </div>
                                     </div>`
                                 );
                             }else{
                                 $(".single-chat-room").append(
-                                    `<div class="message my-1 col-12">
+                                    `<div class="message-row col-12">
+                                    <div class="message my-1 px-2 mr-auto">
                                         ${data[index]['message']}
+                                    </div>
                                     </div>`
                                 );
                             }
@@ -276,16 +267,21 @@
             if(chat_room_id == data['chat_room_id']){ //jika room open
                 if(user_id == data['user_id']){
                     $(".single-chat-room").append(
-                        `<div class="message my-1 col-12 message-own">
-                        ${data['message']}
+                        `<div class="message-row col-12 own">
+                            <div class="message my-1 px-2 message-own">
+                                ${data['message']}
+                            </div>
                         </div>`
                     );
+                    
                     $("textarea.input-pesan").val("");
                     $('.single-chat-room').scrollTop(100000000);
                 }else{
                     $(".single-chat-room").append(
-                        `<div class="message my-1 col-12">
-                        ${data['message']}
+                        `<div class="message-row col-12">
+                            <div class="message my-1 px-2">
+                                ${data['message']}
+                            </div>
                         </div>`
                     );
                     $('.single-chat-room').scrollTop(100000000);
