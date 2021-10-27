@@ -11,7 +11,7 @@
             <img src="{{ asset('image/rectangle205.png') }}" class="img-fluid img-rectangle" alt="">
             <div class="search-box-outer mx-auto d-block">
                 <div class="search-box">
-                <form action="" >
+                <form action="{{ route('user.search') }}" method="GET">
                     <input class="py-2 px-4 cari-rental d-block" type="text" name="" id="" placeholder="Cari di rentalku">
                     <button class="py-2 px-4 button"><i class="fa-solid fa-search"></i></button>
                 

@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserSeeders;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\UserRole;
+use App\Models\Dompet;
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,9 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        // $this->call([
-        //     UserSeeder::class
-        // ]);
+        $this->call([
+            AdminSeeder::class,
+            RoleTipeSeeder::class,
+        ]);
+        User::factory(10)->has(UserRole::factory(),'user_role')->has(Dompet::factory(),'dompet')->create();
+        $this->call([
+            DepositSeeder::class,
+            KategoriSeeder::class,
+            KendaraanSeeder::class,
+            PengemudiSeeder::class,
+            TransaksiSeeder::class
+        ]);
+        
     }
 }

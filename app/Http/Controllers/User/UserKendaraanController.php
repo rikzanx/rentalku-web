@@ -11,7 +11,8 @@ class UserKendaraanController extends Controller
 
     }
 
-    public function search(){
+    public function search(Request $request){
+        dd($request->pilihanKota);
         return view('user.search');
     }
 }

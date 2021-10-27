@@ -10,7 +10,10 @@ class Deposit extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'user_id',
+        'dompet_id',
+        'jumlah',
+        'status',
     ];
 
     public function user(){

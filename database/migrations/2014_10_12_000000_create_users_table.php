@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image_link')->default('image/profil.png');
+            $table->string('no_ktp')->nullable();
             $table->string('alamat')->nullable();
             $table->string('kota')->nullable();
             $table->string('telp')->nullable();

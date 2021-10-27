@@ -16,8 +16,8 @@ class CreatePengemudisTable extends Migration
         Schema::create('pengemudis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->bigInteger('team_id');
-            $table->bigInteger('role_tipe_id');
+            $table->bigInteger('owner_id');
+            $table->bigInteger('harga'); //harga per hari
             $table->timestamps();
         });
     }

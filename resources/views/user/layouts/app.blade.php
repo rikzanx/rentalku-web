@@ -145,17 +145,32 @@
                                 //jika true foto dari user
                                 data_user = data[index]['user'];
                             }
-                            $( ".chat-room" ).html(
-                                `<div class="pesan row p-1" onclick="show_message('${data[index]['id']}','${data_user['name']}')">
-                                    <div class="col-4 mx-0">
-                                        <img src="{{ asset('') }}${data_user['image_link']}" alt="" srcset="" class="img-user-chat img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-8 p-0">
-                                        <label for="" class="small"><b>${data_user['name']}</b></label>
-                                        <p class="small mb-0">${data[index]['message'][0]['message']}</p>
-                                    </div>
-                                </div>`
-                            );
+                            if(index == 0){
+                                $( ".chat-room" ).html(
+                                    `<div class="pesan row p-1" onclick="show_message('${data[index]['id']}','${data_user['name']}')">
+                                        <div class="col-4 mx-0">
+                                            <img src="{{ asset('') }}${data_user['image_link']}" alt="" srcset="" class="img-user-chat img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-8 p-0">
+                                            <label for="" class="small"><b>${data_user['name']}</b></label>
+                                            <p class="small mb-0">${data[index]['message'][0]['message']}</p>
+                                        </div>
+                                    </div>`
+                                );
+                            }else{
+                                $( ".chat-room" ).append(
+                                    `<div class="pesan row p-1" onclick="show_message('${data[index]['id']}','${data_user['name']}')">
+                                        <div class="col-4 mx-0">
+                                            <img src="{{ asset('') }}${data_user['image_link']}" alt="" srcset="" class="img-user-chat img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-8 p-0">
+                                            <label for="" class="small"><b>${data_user['name']}</b></label>
+                                            <p class="small mb-0">${data[index]['message'][0]['message']}</p>
+                                        </div>
+                                    </div>`
+                                );
+                            }
+                            
                         });
                         $('#chat').removeClass('hidden');
                         $('.chat-button').addClass('hidden');
@@ -185,23 +200,44 @@
                                 `<p class="mb-0 mt-0 name-chat"><i class="fa-solid fa-arrow-left color-base back-btn"></i> ${name}</p>`
                             );
                             id = '{{ Auth::user()->id }}';
-                            if(data[index]['user_id'] == id){
-                                $(".single-chat-room").append(
-                                    `
-                                    <div class="message-row col-12 own">
-                                    <div class="message my-1 px-2 message-own">
-                                        ${data[index]['message']}
-                                    </div>
-                                    </div>`
-                                );
+                            if(index == 0){
+                                if(data[index]['user_id'] == id){
+                                    $(".single-chat-room").html(
+                                        `
+                                        <div class="message-row col-12 own">
+                                        <div class="message my-1 px-2 message-own">
+                                            ${data[index]['message']}
+                                        </div>
+                                        </div>`
+                                    );
+                                }else{
+                                    $(".single-chat-room").html(
+                                        `<div class="message-row col-12">
+                                        <div class="message my-1 px-2 mr-auto">
+                                            ${data[index]['message']}
+                                        </div>
+                                        </div>`
+                                    );
+                                }
                             }else{
-                                $(".single-chat-room").append(
-                                    `<div class="message-row col-12">
-                                    <div class="message my-1 px-2 mr-auto">
-                                        ${data[index]['message']}
-                                    </div>
-                                    </div>`
-                                );
+                                if(data[index]['user_id'] == id){
+                                    $(".single-chat-room").append(
+                                        `
+                                        <div class="message-row col-12 own">
+                                        <div class="message my-1 px-2 message-own">
+                                            ${data[index]['message']}
+                                        </div>
+                                        </div>`
+                                    );
+                                }else{
+                                    $(".single-chat-room").append(
+                                        `<div class="message-row col-12">
+                                        <div class="message my-1 px-2 mr-auto">
+                                            ${data[index]['message']}
+                                        </div>
+                                        </div>`
+                                    );
+                                }
                             }
                             $('.single-chat-room').scrollTop(100000000);
                         });

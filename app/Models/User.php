@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'image_link',
+        'no_ktp',
         'alamat',
         'kota',
         'telp',
@@ -55,7 +56,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Kendaraan');
     }
 
-    public function Pengemudi(){
+    public function pengemudi(){
+        return $this->belongsToMany('App\Models\Pengemudi');
+    }
+
+    public function owner(){
         return $this->belongsToMany('App\Models\Pengemudi');
     }
 
@@ -96,7 +101,7 @@ class User extends Authenticatable
     }
 
     public function user_role(){
-        return $this->hasMay('App\Models\UserRole');
+        return $this->hasMany('App\Models\UserRole');
     }
 
 }

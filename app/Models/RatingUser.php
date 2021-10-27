@@ -10,6 +10,9 @@ class RatingUser extends Model
     use HasFactory;
 
     protected $fillable = [
+        "user_id",
+        "user_to_id",
+        "jumlah_bintang"
 
     ];
 
@@ -20,9 +23,8 @@ class RatingUser extends Model
     public function userTo(){
         return $this->hasOne('App\Models\User','id','user_to_id');
     }
-
     public function reviewUser(){
-        return $this->hasOne('App\Models\ReviewUser','id','review_user_id');
+        return $this->hasMany('App\Models\ReviewUser');
     }
 
 }

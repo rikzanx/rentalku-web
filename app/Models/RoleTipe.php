@@ -10,7 +10,7 @@ class RoleTipe extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'name'
     ];
 
     public function pengemudi(){

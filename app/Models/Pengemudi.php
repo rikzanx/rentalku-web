@@ -10,6 +10,9 @@ class Pengemudi extends Model
     use HasFactory;
 
     protected $fillable = [
+        "user_id",
+        "owner_id",
+        "harga"
 
     ];
 
@@ -17,14 +20,10 @@ class Pengemudi extends Model
         return $this->hasOne('App\Models\User','id','user_id');
     }
 
-    public function team(){
-        return $this->hasOne('App\Models\Team','id','team_id');
+    public function owner(){
+        return $this->hasOne('App\Models\User','id','owner_id');
     }
-
-    public function roleTipe(){
-        return $this->hasOne('App\Models\RoleTipe','id','role_tipe_id');
-    }
-    public function transaksi(){
-        return $this->hasMany('App\Models\Transaksi');
+    public function pengemudiTransaksi(){
+        return $this->hasMany('App\Models\PengemudiTransaksi');
     }
 }

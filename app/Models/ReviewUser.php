@@ -10,10 +10,11 @@ class ReviewUser extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'rating_user_id',
+        'review',
     ];
 
     public function ratingUser(){
-        return $this->hasMany('App\Models\RatingUser');
+        return $this->hasOne('App\Models\RatingUser','id','rating_user_id');
     }
 }

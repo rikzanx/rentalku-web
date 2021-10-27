@@ -17,8 +17,6 @@ class CreateTransaksisTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('kendaraan_id');
-            $table->bigInteger('pengemudi_id');
-            $table->integer('total_price');
             $table->datetime('waktu_ambil');
             $table->integer('durasi');
             $table->integer('denda');

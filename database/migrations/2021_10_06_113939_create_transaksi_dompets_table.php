@@ -16,8 +16,8 @@ class CreateTransaksiDompetsTable extends Migration
         Schema::create('transaksi_dompets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('dompet_id');
-            $table->integer('saldo');
-            $table->boolean('status')->default(0);
+            $table->integer('jumlah');
+            $table->string('status')->default("Proses");
             $table->timestamps();
         });
     }

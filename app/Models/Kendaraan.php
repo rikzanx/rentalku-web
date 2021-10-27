@@ -17,7 +17,8 @@ class Kendaraan extends Model
         'harga',
         'tahun',
         'lat',
-        'long'
+        'long',
+        'image_link'
     ];
 
     public function user(){

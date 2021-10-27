@@ -18,7 +18,7 @@ class CreateDepositsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('dompet_id');
             $table->integer('jumlah');
-            $table->integer('status');
+            $table->text('status');
             $table->timestamps();
         });
     }

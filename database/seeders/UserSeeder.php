@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,13 +16,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-
-        DB::table("users")->insert([
-            "name" => $faker->name(),
-            "email" => $faker->safeEmail,
-            "password" => "user123",
-            "telp" => $faker->phoneNumber,
-            "alamat" => $faker->address,
-        ]);
+        for($i=1;$i<=10;$i++){
+            DB::table("users")->insert([
+                "name" => $faker->name(),
+                "email" => $faker->safeEmail,
+                "password" => Hash::make("user"),
+                "telp" => $faker->phoneNumber,
+                "alamat" => $faker->address,
+            ]);
+        }
+        
     }
 }

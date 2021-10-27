@@ -14,7 +14,7 @@ class AddMessageToMessagesTable extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->text('message')->after('room_id');
+            $table->text('message')->after('chat_room_id');
         });
     }
 

@@ -10,7 +10,9 @@ class TransaksiDompet extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        "dompet_id",
+        "jumlah",
+        "status",
     ];
 
     public function dompet(){
