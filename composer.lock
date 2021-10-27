@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a75b2af1c4128d2278c26b094542568",
+    "content-hash": "6257d104bfa6e8ed53fa46f6ca4f992e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5406,6 +5406,68 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "vkovic/laravel-commando",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vkovic/laravel-commando.git",
+                "reference": "f5284a15d4417ba9b1935fead3b79f043e5af4aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vkovic/laravel-commando/zipball/f5284a15d4417ba9b1935fead3b79f043e5af4aa",
+                "reference": "f5284a15d4417ba9b1935fead3b79f043e5af4aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "laravel/framework": "8.*",
+                "orchestra/database": "6.*",
+                "orchestra/testbench": "6.*",
+                "phpunit/phpunit": "^9.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vkovic\\LaravelCommando\\Providers\\CommandoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vkovic\\LaravelCommando\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Ković",
+                    "email": "vlada.kovic@gmail.com"
+                }
+            ],
+            "description": "Collection of handy Laravel artisan commands that most projects needs",
+            "keywords": [
+                "artisan",
+                "commands",
+                "console",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/vkovic/laravel-commando/issues",
+                "source": "https://github.com/vkovic/laravel-commando/tree/v0.2.0"
+            },
+            "time": "2021-01-29T00:26:26+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.3.1",
             "source": {
@@ -8344,5 +8406,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

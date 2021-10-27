@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::connection('mysql')->statement("CREATE DATABASE ?", [$this->database]);
         $this->call([
             AdminSeeder::class,
             RoleTipeSeeder::class,
