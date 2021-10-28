@@ -171,8 +171,10 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kendaraan $kendaraan)
     {
-        //
+        $kendaraan->delete();
+
+        return response()->json("Data berhasil dihapus");
     }
 }
