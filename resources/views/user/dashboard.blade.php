@@ -20,19 +20,19 @@
                 <div class="search-toggle-box pt-5 hidden">
                     <p class="text-center mb-0">Pilihan Kota</p>
                     <div class="kategori row px-4">
-                        <input class="filter-checkbox pilihanKota-surabaya" type="checkbox" name="pilihanKota" value="Surabaya" checked="checked" />
+                        <input class="filter-checkbox pilihanKota-Surabaya" type="checkbox" name="pilihanKota[]" value="Surabaya" checked="checked" />
                         <div class="kategori-outer col-3 p-1">
-                            <div class="kategori-box text-center small pilihankota-check" for="pilihanKota-surabaya" >Surabaya</div>
+                            <div class="kategori-box text-center small pilihankota-check" for="pilihanKota-Surabaya" >Surabaya</div>
                         </div>
-                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Jogjakart" checked="checked" />
+                        <input class="filter-checkbox pilihanKota-Jogjakarta" type="checkbox" name="pilihanKota[]" value="Jogjakarta" checked="checked" />
                         <div class="kategori-outer col-3 p-1">
-                            <div class="kategori-box text-center small pilihankota-check">Jogjakarta</div>
+                            <div class="kategori-box text-center small pilihankota-check" for="pilihanKota-Jogjakarta">Jogjakarta</div>
                         </div>
-                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Bandung" />
+                        <input class="filter-checkbox" type="checkbox" name="pilihanKota[]" value="Bandung" />
                         <div class="kategori-outer col-3 p-1">
                             <div class="kategori-box text-center small pilihankota-check">Bandung</div>
                         </div>
-                        <input class="filter-checkbox" type="checkbox" name="pilihanKota" value="Jakarta" />
+                        <input class="filter-checkbox" type="checkbox" name="pilihanKota[]" value="Jakarta" />
                         <div class="kategori-outer col-3 p-1">
                             <div class="kategori-box text-center small pilihankota-check">Jakarta</div>
                         </div>

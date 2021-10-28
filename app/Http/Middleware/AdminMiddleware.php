@@ -20,7 +20,7 @@ class AdminMiddleware
         if(Auth::user() == null){
             return redirect("admin/login")->with('status','You are not allowed to access');
         }else{
-            if(Auth::user()->level != "admin"){
+            if(Auth::user()->role != "admin"){
                 return redirect("admin/login")->with('status','You are not allowed to access');
             }
         }

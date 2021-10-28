@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\UserRole;
 use App\Models\Dompet;
 
 
@@ -18,12 +17,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::connection('mysql')->statement("CREATE DATABASE ?", [$this->database]);
         $this->call([
             AdminSeeder::class,
-            RoleTipeSeeder::class,
         ]);
-        User::factory(10)->has(UserRole::factory(),'user_role')->has(Dompet::factory(),'dompet')->create();
+        User::factory(10)->has(Dompet::factory(),'dompet')->create();
+        DB::table("users")->where('id',2)->update([
+            "role" => "pemilik"
+        ]);
+        DB::table("users")->where('id',3)->update([
+            "role" => "pemilik"
+        ]);
+        DB::table("users")->where('id',4)->update([
+            "role" => "pengemudi"
+        ]);
         $this->call([
             DepositSeeder::class,
             KategoriSeeder::class,

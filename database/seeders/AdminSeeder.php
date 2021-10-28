@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             "name" => "admin",
             "email" => "admin@gmail.com",
             "password" => Hash::make("admin"),
-            "level" => "admin",
+            "role" => "admin",
             "created_at" => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }

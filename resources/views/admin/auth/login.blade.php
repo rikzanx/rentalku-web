@@ -1,87 +1,47 @@
-@extends('admin.layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Scripts -->
+        <!-- <script src="{{ asset('js/user/login.js') }}" defer></script> -->
+
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+        <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/user/login.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <img src="{{ asset('image/rectangle205.png') }}" alt="" class="img-fluid img-background">
+        <div class="login-form col-4">
+            <img src="{{ asset('image/logo_gabung.png') }}" alt="" class="mt-2 mx-auto d-block">
+            <p class="mt-5 mb-2 text-center"><b>Silahkan Masuk Sebagai Admin</b></p>
+
             @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-                <div class="card-header">{{ __('Login') }} Admin</div>
+                <label class="small mt-4 mx-3 text-danger">{{ session('status') }} </label>
+            @endif
+            <form method="POST" action="{{ route('admin.login.action') }}" class=" mx-3">
+                @csrf
+                <label class="small">Masukkan email anda</label>
+                <input class="col-12" type="email" name="email" placeholder="example@gmail.com" value="{{ old('email') }}" required>
+                <label class="small">Masukkan password anda</label>
+                <input class="col-12" type="password" name="password" placeholder="*******">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('admin.login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-4">
-                                    <div>
-                                        belum punya akun? <a href="">Daftar Sekarang</a>
-                                    </div>
-                                    <div>
-                                        menjadi pemilik mobil? <a href="">Login</a>
-                                    </div>
-                                    
-                            </div>
-                        </div> -->
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                <input class="my-4 col-12 login-btn" type="submit" value="Masuk">
+            </form>
         </div>
-    </div>
-</div>
-@endsection
+        <div class="footer">
+            <p>All Right Reserved &copy; 2021. RentalKu Team.</p>
+        </div>
+    </body>
+</html>

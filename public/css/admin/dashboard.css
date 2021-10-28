@@ -1,0 +1,16 @@
+.button{
+    background-color: #007a66;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.button:hover{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.button-trans{
+    background-color: transparent !important;
+    color: #007a66;
+}
