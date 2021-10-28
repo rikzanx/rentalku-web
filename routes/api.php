@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\KendaraanController;
+use App\Http\Controllers\API\PengemudiController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,9 +38,13 @@ Route::group(['prefix' => 'message'], function () {
 
 //Kendaraan
 Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan');
-
-//User
-Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::post('/kendaraan/store', [KendaraanController::class, 'store'])->name('kendaraan.store');
 Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'edit'])->name('kendaraan.update');
 Route::post('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
+
+//Pengemudi
+Route::get('/pengemudi', [PengemudiController::class, 'index'])->name('pengemudi');
+
+
+//User
+Route::get('/user', [UserController::class, 'index'])->name('user');
