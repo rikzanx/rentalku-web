@@ -12,7 +12,8 @@ class RatingKendaraan extends Model
     protected $fillable = [
         "user_id",
         "kendaraan_id",
-        "jumlah_bintang"
+        "jumlah_bintang",
+        "review"
     ];
 
     public function user(){
@@ -21,9 +22,6 @@ class RatingKendaraan extends Model
 
     public function kendaraan(){
         return $this->hasOne('App\Models\Kendaraan','id','kendaraan_id');
-    }
-    public function reviewKendaaran(){
-        return $this->hasMany('App\Models\ReviewKendaaran');
     }
 
 }

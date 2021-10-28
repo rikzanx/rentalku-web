@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('image_link')->default('image/profil.png');
             $table->string('nik')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->string('foto_sim')->nullable();
             $table->string('alamat')->nullable();
             $table->string('kota')->nullable();
             $table->string('telp')->nullable();

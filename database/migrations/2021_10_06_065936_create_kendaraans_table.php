@@ -22,6 +22,10 @@ class CreateKendaraansTable extends Migration
             $table->integer('seat');
             $table->integer('harga');
             $table->integer('tahun');
+            $table->text('transmisi');
+            $table->text('mesin');
+            $table->text('warna');
+            $table->boolean('supir');
             $table->string('image_link')->default('image/profil.png');
             $table->decimal('lat',10,7)->default(0);
             $table->decimal('long',10,7)->default(0);

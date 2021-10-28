@@ -12,8 +12,8 @@ class RatingUser extends Model
     protected $fillable = [
         "user_id",
         "user_to_id",
-        "jumlah_bintang"
-
+        "jumlah_bintang",
+        "review"
     ];
 
     public function user(){
@@ -22,9 +22,6 @@ class RatingUser extends Model
 
     public function userTo(){
         return $this->hasOne('App\Models\User','id','user_to_id');
-    }
-    public function reviewUser(){
-        return $this->hasMany('App\Models\ReviewUser');
     }
 
 }

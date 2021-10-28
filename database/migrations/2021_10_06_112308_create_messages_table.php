@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('chat_room_id');
+            $table->text('message');
             $table->boolean('is_seen')->default(0);
             $table->timestamps();
         });

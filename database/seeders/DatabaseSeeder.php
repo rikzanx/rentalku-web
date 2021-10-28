@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             "role" => "pengemudi"
         ]);
         $this->call([
-            DepositSeeder::class,
+            TransaksiDompetSeeder::class,
             KategoriSeeder::class,
             KendaraanSeeder::class,
             PengemudiSeeder::class,

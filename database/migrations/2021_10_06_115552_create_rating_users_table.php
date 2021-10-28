@@ -18,6 +18,7 @@ class CreateRatingUsersTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('user_to_id');
             $table->integer('jumlah_bintang');
+            $table->string('review');
             $table->timestamps();
         });
     }

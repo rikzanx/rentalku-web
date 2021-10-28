@@ -12,11 +12,12 @@ class Transaksi extends Model
     protected $fillable = [
         "user_id",
         "kendaraan_id",
-        "pengemudi_id",
         "waktu_ambil",
         "durasi",
         "denda",
         "status",
+        "lat",
+        "long",
     ];
 
     public function user(){

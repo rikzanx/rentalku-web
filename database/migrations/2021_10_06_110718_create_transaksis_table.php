@@ -21,6 +21,8 @@ class CreateTransaksisTable extends Migration
             $table->integer('durasi');
             $table->integer('denda');
             $table->string('status');
+            $table->decimal('lat',10,7)->default(0);
+            $table->decimal('long',10,7)->default(0);
             $table->timestamps();
         });
     }

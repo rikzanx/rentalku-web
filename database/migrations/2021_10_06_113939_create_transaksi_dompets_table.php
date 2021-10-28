@@ -15,8 +15,13 @@ class CreateTransaksiDompetsTable extends Migration
     {
         Schema::create('transaksi_dompets', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->bigInteger('dompet_id');
+            $table->string('name'); //topup , penarikan, pemasukan
             $table->integer('jumlah');
+            $table->integer('kode_unik')->default(0);
+            $table->string("bank")->nullable();
+            $table->string("no_rek")->nullable();
             $table->string('status')->default("Proses");
             $table->timestamps();
         });

@@ -10,15 +10,20 @@ class Kendaraan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'kategori_id',
         'name',
         'nopol',
         'seat',
         'harga',
         'tahun',
+        'transmisi',
+        'mesin',
+        'warna',
+        'supir',
+        'image_link',
         'lat',
         'long',
-        'image_link'
     ];
 
     public function user(){

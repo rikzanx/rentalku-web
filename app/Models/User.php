@@ -25,7 +25,9 @@ class User extends Authenticatable
         'email',
         'password',
         'image_link',
-        'no_ktp',
+        'nik',
+        'foto_ktp',
+        'foto_sim',
         'alamat',
         'kota',
         'telp',
@@ -84,8 +86,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Dompet');
     }
 
-    public function deposit(){
-        return $this->hasMany('App\Models\Deposit');
+    public function transaksiDompet(){
+        return $this->hasMany('App\Models\TransaksiDompet');
     }
 
     public function ratingKendaraan(){

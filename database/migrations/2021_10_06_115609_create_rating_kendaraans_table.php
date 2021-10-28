@@ -18,6 +18,7 @@ class CreateRatingKendaraansTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('kendaraan_id');
             $table->integer('jumlah_bintang');
+            $table->string('review');
             $table->timestamps();
         });
     }
