@@ -42,3 +42,4 @@ Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::post('/kendaraan/store', [KendaraanController::class, 'store'])->name('kendaraan.store');
 Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'edit'])->name('kendaraan.update');
+Route::post('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
