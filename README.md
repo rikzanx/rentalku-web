@@ -8,4 +8,12 @@ Rentalku adalah aplikasi yang dibuat untuk menyewa mobil secara online/
 
 ## Installation
 
-incoming
+- git clone
+- open folder rentalku-web
+- composer update
+- copy .env.example .env
+- edit .env database or other
+- php artisan db:create rentalku
+- php artisan migrate
+- php artisan db:seed --class=DatabaseSeeder
+- php artisan serve
