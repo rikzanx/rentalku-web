@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\UserMessageController;
+use App\Models\Pengemudi;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::post('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])-
 
 //Pengemudi
 Route::get('/pengemudi', [PengemudiController::class, 'index'])->name('pengemudi');
+Route::get('/pengemudi/{id}', [PengemudiController::class, 'show'])->name('pengemudi.show');
 
 
 //User

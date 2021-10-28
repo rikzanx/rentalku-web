@@ -15,9 +15,7 @@ class PengemudiController extends Controller
      */
     public function index()
     {
-        $pengemudi = Pengemudi::first()->get();
-
-        return response()->json($pengemudi, 200);
+        
     }
 
     /**
@@ -49,7 +47,12 @@ class PengemudiController extends Controller
      */
     public function show($id)
     {
-        //
+        $pengemudi = Pengemudi::find($id);
+        if (is_null($pengemudi)) {
+            return response()->json('Data not found', 404); 
+        }
+
+        return response()->json($pengemudi, 200);
     }
 
     /**
