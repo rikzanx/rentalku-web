@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             KendaraanSeeder::class,
             PengemudiSeeder::class,
-            TransaksiSeeder::class
+            TransaksiSeeder::class,
+            ArtikelSeeder::class,
         ]);
         
     }

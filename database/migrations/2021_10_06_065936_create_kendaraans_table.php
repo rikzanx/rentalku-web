@@ -16,10 +16,11 @@ class CreateKendaraansTable extends Migration
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->bigInteger('kategori_id');
+            $table->bigInteger('kategori_kota_id');
+            $table->bigInteger('kategori_seat_id');
+            $table->bigInteger('kategori_jenis_id');
             $table->text('name');
             $table->text('nopol');
-            $table->integer('seat');
             $table->integer('harga');
             $table->integer('tahun');
             $table->text('transmisi');

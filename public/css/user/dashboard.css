@@ -20,7 +20,6 @@ input[type="text"], input[type="password"], textarea, select {
 }
 .search-box{
     position: relative;
-    background-color: green;
     width: 450px;
     height: 30px;
     border-radius: 20px;
@@ -47,6 +46,7 @@ input[type="text"], input[type="password"], textarea, select {
     color: black;
     width: 100%;
     z-index: 9998;
+    border: 0 !important;
 }
 .kategori-box{
     border: 1px solid #A0A0A0;

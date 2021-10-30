@@ -7,12 +7,9 @@
 
 @section('content')
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-            <h1 class="h4">Pengguna</h1>
+            <h1 class="h4">Edit Artikel</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Penyewa</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Pemilik mobil</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Sopir</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Admin</a>
+              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Artikel</a>
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle button-trans" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin Rentalku
@@ -25,65 +22,25 @@
             </div>
           </div>
 
-          <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
-          <div class="table-responsive">
-            <table class="table table-sm" id="table-pengguna">
-              <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>Nama pengguna</th>
-                  <th>Sebagai</th>
-                  <th>Keterangan</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"  onclick="modal_delete(2)"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>judul artikel</p>
+                    <input type="text" name="" id="">
+                </div>
+                <div class="col-12">
+                    <p>Pilih foto artikel</p>
+                    <input type="file" name="" id="">
+                </div>
+                <div class="col-12">
+                    <p>Isi Artikel</p>
+                    <textarea name="" id="" cols="100" rows="10" style="min-width: 100%"></textarea>
+                </div>
+                <div class="col-12 d-flex flex-row-reverse">
+                    <button class="btn btn-oke-crud ml-2">Edit</button>
+                    <a class="btn btn-cancel-crud ml-2" href="{{ route('admin.artikel') }}">Batal</a>
+                </div>
+            </div>
           </div>
         <!-- Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -7,12 +7,14 @@
 
 @section('content')
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-            <h1 class="h4">Pengguna</h1>
+            <div class="box">
+                <a class="sub-menu mx-2 h5 {{ Route::currentRouteNamed('admin.kendaraan') ? 'sub-active' : '' }}" href="{{ route('admin.kendaraan') }}">Gallery Unitku</a>
+                <a class="sub-menu mx-2 h5 {{ Route::currentRouteNamed('admin.kendaraan.dipesan') ? 'sub-active' : '' }}" href="{{ route('admin.kendaraan.dipesan') }}">Sedang Dipesan</a>
+                <a class="sub-menu mx-2 h5 {{ Route::currentRouteNamed('admin.kendaraan.selesai') ? 'sub-active' : '' }}" href="{{ route('admin.kendaraan.selesai') }}">Selesai</a>
+            </div>  
+          
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Penyewa</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Pemilik mobil</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Sopir</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Admin</a>
+              
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle button-trans" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin Rentalku
@@ -30,58 +32,56 @@
             <table class="table table-sm" id="table-pengguna">
               <thead>
                 <tr>
-                  <th>Email</th>
+                  <th>Nama unit</th>
                   <th>Nama pengguna</th>
-                  <th>Sebagai</th>
-                  <th>Keterangan</th>
+                  <th>Pilihan kota</th>
+                  <th>Tanggal sewa</th>
+                  <th>Biaya sewa / hari</th>
+                  <th>Informasi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>aris@gmail.com</td>
+                  <td>Avanza</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>Surabaya</td>
+                  <td>13 Oktober - 14 Oktober 2021</td>
+                  <td>250.000</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                      <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
-                  <td>aris@gmail.com</td>
+                  <td>Avanza</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>Surabaya</td>
+                  <td>13 Oktober - 14 Oktober 2021</td>
+                  <td>250.000</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                      <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
-                  <td>aris@gmail.com</td>
+                  <td>Avanza</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>Surabaya</td>
+                  <td>13 Oktober - 14 Oktober 2021</td>
+                  <td>250.000</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                      <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
-                  <td>aris@gmail.com</td>
+                  <td>Avanza</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>Surabaya</td>
+                  <td>13 Oktober - 14 Oktober 2021</td>
+                  <td>250.000</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                      <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"  onclick="modal_delete(2)"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
+                
               </tbody>
             </table>
           </div>

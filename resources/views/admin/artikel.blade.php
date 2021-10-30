@@ -9,10 +9,7 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
             <h1 class="h4">Pengguna</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Penyewa</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Pemilik mobil</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Sopir</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Admin</a>
+              <a class="button mx-2 px-4 py-2" href="{{ route('admin.artikel.create') }}"><i class="fa-solid fa-plus"></i> Artikel</a>
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle button-trans" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin Rentalku
@@ -30,56 +27,16 @@
             <table class="table table-sm" id="table-pengguna">
               <thead>
                 <tr>
-                  <th>Email</th>
-                  <th>Nama pengguna</th>
-                  <th>Sebagai</th>
+                  <th>Judul</th>
                   <th>Keterangan</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>Enam Teknik Mencuci Mobil yang Benar, Jangan Asal!</td>
                   <td>
                     <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>aris@gmail.com</td>
-                  <td>Aris</td>
-                  <td>Penyewa</td>
-                  <td>
-                    <button type="button" class="delete-button px-3 py-1"  onclick="modal_delete(2)"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <a type="button" class="edit-button px-3 py-1" href="{{ route('admin.artikel.edit') }}"><i class="fa-solid fa-edit"></i></a>
                   </td>
                 </tr>
               </tbody>

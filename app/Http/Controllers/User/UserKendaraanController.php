@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kendaraan;
 
 class UserKendaraanController extends Controller
 {
@@ -12,7 +13,7 @@ class UserKendaraanController extends Controller
     }
 
     public function search(Request $request){
-        dd($request->pilihanKota);
-        return view('user.search');
+        $kendaraan = Kendaraan::paginate(5);
+        return view('user.search',["kendaraan" => $kendaraan]);
     }
 }

@@ -11,7 +11,9 @@ class Kendaraan extends Model
 
     protected $fillable = [
         'user_id',
-        'kategori_id',
+        'kategori_kota_id',
+        'kategori_seat_id',
+        'kategori_jenis_id',
         'name',
         'nopol',
         'seat',
@@ -30,8 +32,16 @@ class Kendaraan extends Model
         return $this->hasOne('App\Models\User','id','user_id');
     }
 
-    public function kategori(){
-        return $this->hasOne('App\Models\Kategori','id','kategori_id');
+    public function kategoriKota(){
+        return $this->hasOne('App\Models\KategoriKota','id','kategori_kota_id');
+    }
+
+    public function kategoriSeat(){
+        return $this->hasOne('App\Models\KategoriSeat','id','kategori_seat_id');
+    }
+    
+    public function kategoriJenis(){
+        return $this->hasOne('App\Models\KategoriJenis','id','kategori_jenis_id');
     }
 
     public function transaksi(){

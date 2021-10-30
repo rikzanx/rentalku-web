@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -38,57 +39,67 @@
             
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                   <i class="fa-solid fa-user"></i>
                   Pengguna
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.topup') ? 'active' : '' }}" href="{{ route('admin.topup') }}">
                 <i class="fa-solid fa-wallet"></i>
                 Top Up
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.penarikan') ? 'active' : '' }}" href="{{ route('admin.penarikan') }}">
                 <i class="fa-solid fa-wallet"></i>
                 Penarikan
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.kendaraan') || Route::currentRouteNamed('admin.kendaraan.dipesan') || Route::currentRouteNamed('admin.kendaraan.selesai') ? 'active' : '' }} " href="{{  route('admin.kendaraan') }}">
                 <i class="fa-solid fa-car"></i>
                 Kelola Produk
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.artikel') ? 'active' : '' }}" href="{{ route('admin.artikel') }}">
                 <i class="fa-solid fa-book"></i>
                 Kelola Artikel
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteNamed('admin.kategori') || Route::currentRouteNamed('admin.kategori.kota')  ? 'active' : '' }}" href="{{ route('admin.kategori') }}">
+                <i class="fa-solid fa-layer-group"></i>
+                Kelola Kategori
                 </a>
               </li>
             </ul>
           </div>
         </nav>
-
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         @yield('content')
+        <div id="footer" class="mt-2">
+            <div class="row col-12 pt-4">
+                <p class="mx-auto">All Right Reserved &copy; 2021. RentalKu Team.</p>
+            </div>
+        </div>
+        </main>
       </div>
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/popper.min.js.js') }}"></script>
 
     <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
-    </script>
+    </script> -->
 
     <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
@@ -117,11 +128,10 @@
           }
         }
       });
-    </script>
-            @yield('content')
+    </script> -->
         
     </div>
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    
     @yield('js')  
 </body>
 </html>

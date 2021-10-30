@@ -27,7 +27,7 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             
-            if(Auth::user()->level != "admin"){
+            if(Auth::user()->role != "admin"){
                 return redirect("admin/login")->with('status','You are not allowed to access');
             }
             return redirect()->intended('admin/')

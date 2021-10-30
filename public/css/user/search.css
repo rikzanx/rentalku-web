@@ -1,0 +1,6 @@
+.bg-white{
+    background-color: white;
+}
+.pagination > a, .pagination > a:link, .pagination > a:hover{
+    background-color: blue;
+}

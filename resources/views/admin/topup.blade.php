@@ -2,17 +2,14 @@
 
 @section('css')
     <link href="{{ asset('css/admin/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/topup.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-            <h1 class="h4">Pengguna</h1>
+            <h1 class="h4">Top Up</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Penyewa</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Pemilik mobil</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Sopir</a>
-              <a class="button mx-2 px-4 py-2"><i class="fa-solid fa-plus"></i> Admin</a>
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle button-trans" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin Rentalku
@@ -32,57 +29,98 @@
                 <tr>
                   <th>Email</th>
                   <th>Nama pengguna</th>
-                  <th>Sebagai</th>
-                  <th>Keterangan</th>
+                  <th>Bank</th>
+                  <th>Nominal</th>
+                  <th>Aksi</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>aris@gmail.com</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
                   <td>aris@gmail.com</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
                   <td>aris@gmail.com</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
                   <td>aris@gmail.com</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
                 <tr>
                   <td>aris@gmail.com</td>
                   <td>Aris</td>
-                  <td>Penyewa</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
                   <td>
-                    <button type="button" class="delete-button px-3 py-1"  onclick="modal_delete(2)"><i class="fa-solid fa-trash"></i></button>
-                    <button type="button" class="edit-button px-3 py-1"><i class="fa-solid fa-edit"></i></button>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
                   </td>
                 </tr>
-              </tbody>
+                <tr>
+                  <td>aris@gmail.com</td>
+                  <td>Aris</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
+                  <td>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>aris@gmail.com</td>
+                  <td>Aris</td>
+                  <td>BCA</td>
+                  <td>500.231</td>
+                  <td>
+                    <button type="button" class="edit-button px-3 py-1">Konfirmasi</button>
+                  </td>
+                  <td>
+                      <i class="color-base-second">Sudah Bayar</i> <i class="fa-solid fa-info-circle"></i>
+                  </td>
+                </tr>
+            </tbody>
             </table>
           </div>
         <!-- Modal -->
@@ -113,8 +151,6 @@
             </div>
           </div>
         </div>
-        
-
 @endsection
 
 @section('js')

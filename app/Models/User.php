@@ -106,4 +106,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\UserRole');
     }
 
+    public function artikel(){
+        return $this->hasMany('App\Models\Artikel');
+    }
+
 }
