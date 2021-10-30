@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\API\KendaraanController;
-use App\Http\Controllers\API\PengemudiController;
-use App\Http\Controllers\API\UserController;
+use App\Models\Pengemudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ArtikelController;
 
+use App\Http\Controllers\API\KendaraanController;
+use App\Http\Controllers\API\PengemudiController;
 use App\Http\Controllers\API\UserMessageController;
-use App\Models\Pengemudi;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +42,18 @@ Route::group(['prefix' => 'message'], function () {
 Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan');
 Route::post('/kendaraan/store', [KendaraanController::class, 'store'])->name('kendaraan.store');
 Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'edit'])->name('kendaraan.update');
-Route::post('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
+Route::delete('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
 
 //Pengemudi
 Route::get('/pengemudi', [PengemudiController::class, 'index'])->name('pengemudi');
 Route::get('/pengemudi/{id}', [PengemudiController::class, 'show'])->name('pengemudi.show');
+
+
+//artikel
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
+Route::post('/artikel/store', [ArtikelController::class, 'store'])->name('artikel.store');
+Route::post('/artikel/update/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
+Route::delete('/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 
 
 //User
