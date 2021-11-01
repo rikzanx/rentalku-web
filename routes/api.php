@@ -58,3 +58,8 @@ Route::delete('/artikel/destroy/{id}', [ArtikelController::class, 'destroy'])->n
 
 //User
 Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/profil/{id}', [UserController::class, 'show'])->name('user.show');
+
+//pengemudi
+Route::post('/pengemudi/store', [PengemudiController::class, 'store'])->name('pengemudi.store');
+Route::delete('/pengemudi/delete/{pengemudi_id}', [PengemudiController::class, 'destroy'])->name('pengemudi.destroy');
