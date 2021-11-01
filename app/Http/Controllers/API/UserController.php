@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Validator;
 
 class UserController extends Controller
 {
@@ -48,7 +49,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if (is_null($user)) {
+            return response()->json('Data not found', 404); 
+        }
+
+        return response()->json($user, 200);
     }
 
     /**
@@ -71,7 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
