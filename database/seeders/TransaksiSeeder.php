@@ -22,7 +22,7 @@ class TransaksiSeeder extends Seeder
         DB::table("transaksis")->insert($transaksi_data);
 
         $pengemuditransaksi = [
-            ['pengemudi_id' => 3, "transaksi_id" => 1]
+            ['pengemudi_id' => 1, "transaksi_id" => 1]
         ];
         DB::table("pengemudi_transaksis")->insert($pengemuditransaksi);
 

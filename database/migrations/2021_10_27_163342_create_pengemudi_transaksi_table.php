@@ -16,9 +16,9 @@ class CreatePengemudiTransaksiTable extends Migration
         Schema::create('pengemudi_transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pengemudi_id');
-            $table->foreign('pengemudi_id')->references('id')->on('pengemudis');
+            $table->foreign('pengemudi_id')->references('id')->on('pengemudis')->onDelete('cascade');
             $table->unsignedBigInteger('transaksi_id');
-            $table->foreign('transaksi_id')->references('id')->on('transaksis');
+            $table->foreign('transaksi_id')->references('id')->on('transaksis')->onDelete('cascade');
             $table->timestamps();
         });
     }

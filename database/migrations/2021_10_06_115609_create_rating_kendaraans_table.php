@@ -16,9 +16,9 @@ class CreateRatingKendaraansTable extends Migration
         Schema::create('rating_kendaraans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('kendaraan_id');
-            $table->foreign('kendaraan_id')->references('id')->on('kendaraans');
+            $table->foreign('kendaraan_id')->references('id')->on('kendaraans')->onDelete('cascade');
             $table->integer('jumlah_bintang');
             $table->string('review');
             $table->timestamps();

@@ -16,7 +16,7 @@ class CreateDompetsTable extends Migration
         Schema::create('dompets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('saldo')->default(0);
             $table->timestamps();
         });

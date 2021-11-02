@@ -16,13 +16,13 @@ class CreateKendaraansTable extends Migration
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('kategori_kota_id');
-            $table->foreign('kategori_kota_id')->references('id')->on('kategori_kotas');
+            $table->foreign('kategori_kota_id')->references('id')->on('kategori_kotas')->onDelete('cascade');
             $table->unsignedBigInteger('kategori_seat_id');
-            $table->foreign('kategori_seat_id')->references('id')->on('kategori_seats');
+            $table->foreign('kategori_seat_id')->references('id')->on('kategori_seats')->onDelete('cascade');
             $table->unsignedBigInteger('kategori_jenis_id');
-            $table->foreign('kategori_jenis_id')->references('id')->on('kategori_jenis');
+            $table->foreign('kategori_jenis_id')->references('id')->on('kategori_jenis')->onDelete('cascade');
             $table->text('name');
             $table->text('nopol');
             $table->integer('harga');
