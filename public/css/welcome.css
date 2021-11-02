@@ -1,5 +1,25 @@
-.color-base{
+.color-base, .base-color{
     color: #007a66;
+}
+.black-color{
+    color: black;
+}
+.button-base{
+    background-color: #007a66;
+    color: white;
+    border-radius: 20px;
+}
+.button-base-yello:hover{
+    background-color: #FFC700;
+    color: white;
+}
+.button-yellow{
+    background-color: #FFC700;
+    color: white;
+    border-radius: 20px;
+}
+.star-active{
+    color: #FFC700;
 }
 .nav-link{
     color: #007a66 !important;

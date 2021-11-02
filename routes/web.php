@@ -30,6 +30,12 @@ Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::clas
 Route::get('profile',[App\Http\Controllers\User\UserProfileController::class,'index'])->name('user.profile');
 Route::get('search',[App\Http\Controllers\User\UserKendaraanController::class,'search'])->name('user.search');
 
+Route::get('detail-produk/{kendaraan_id}',[App\Http\Controllers\User\UserKendaraanController::class, 'detail'])->name('user.detail-produk');
+Route::get('detail-produk/{kendaraan_id}/ulasan',[App\Http\Controllers\User\UserKendaraanController::class, 'ulasan'])->name('user.detail-produk.ulasan');
+Route::get('detail-produk/{kendaraan_id}/ulasan/pemilik',[App\Http\Controllers\User\UserKendaraanController::class, 'ulasan_pemilik'])->name('user.detail-produk.ulasan.pemilik');
+
+Route::get('pemesanan/create/{kendaraan_id}',[App\Http\Controllers\User\UserPemesananController::class, 'create_form'])->name('user.pemesanan.create');
+Route::post('pemesanan/create',[App\Http\Controllers\User\UserPemesananController::class, 'create'])->name('user.pemesanan.create.action');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', [AdminAuthController::class, 'index'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'customLogin'])->name('admin.login.action'); 

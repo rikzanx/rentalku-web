@@ -95,10 +95,20 @@
         <div class="container">
         <div class="row bg-white py-2">
             <div class="col-6">
-                <span class="tag-label">Jakarta</span>
+                <span class="tag-label p-1">Jakarta</span>
+                <span class="tag-label p-1">Termurah</span>
+                <span class="tag-label p-1">Rating</span>
+                <span class="tag-label p-1"><7</span>
+                <span class="tag-label p-1">Mini Mvp</span>
             </div>
             <div class="col-6 d-flex justify-content-end pagination">
-                {!! $kendaraan->onEachSide(5)->links() !!}
+                <a href="" class="mx-1"><i class="fa-solid fa-chevron-left base-color"></i></a>
+                <a href="" class="mx-1"><i>1</i></a>
+                <a href="" class="mx-1 px-2 active"><i>2</i></a>
+                <a href="" class="mx-1"><i>3</i></a>
+                <a href="" class="mx-1"><i>4</i></a>
+                <a href="" class="mx-1"><i>5</i></a>
+                <a href="" class="mx-1"><i class="fa-solid fa-chevron-right base-color"></i></a>
             </div>
         </div>
         </div>
@@ -108,7 +118,7 @@
             <div class="row col-12">
             @for($i=0;$i<=3;$i++)
                 <div class="col-4 mb-3">
-                    <div class="box-border">
+                    <div class="box-border" onclick='location.href="{{ route('user.detail-produk',3) }}"'>
                         <div class="img-box img-box-mobil">
                         <img src="{{ asset('image/avanza.jpeg') }}" alt="" class="h-100 w-100">
                         </div>
@@ -125,7 +135,6 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             @endfor
             </div>
@@ -134,18 +143,22 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-end pagination">
-                <a href=""><</a>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">></a>
+            <a href="" class="mx-1"><i class="fa-solid fa-chevron-left base-color"></i></a>
+                <a href="" class="mx-1"><i>1</i></a>
+                <a href="" class="mx-1 px-2 active"><i>2</i></a>
+                <a href="" class="mx-1"><i>3</i></a>
+                <a href="" class="mx-1"><i>4</i></a>
+                <a href="" class="mx-1"><i>5</i></a>
+                <a href="" class="mx-1"><i class="fa-solid fa-chevron-right base-color"></i></a>
             </div>
         </div>
     </div>
 @endsection
 
 @section('js')
-
+    <script>
+        function detail(){
+            alert('s');
+        }
+    </script>
 @endsection
