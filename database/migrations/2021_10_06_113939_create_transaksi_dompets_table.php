@@ -15,8 +15,10 @@ class CreateTransaksiDompetsTable extends Migration
     {
         Schema::create('transaksi_dompets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('dompet_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('dompet_id');
+            $table->foreign('dompet_id')->references('id')->on('dompets');
             $table->string('name'); //topup , penarikan, pemasukan
             $table->integer('jumlah');
             $table->integer('kode_unik')->default(0);

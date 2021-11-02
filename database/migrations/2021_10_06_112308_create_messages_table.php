@@ -15,8 +15,10 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('chat_room_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('chat_room_id');
+            $table->foreign('chat_room_id')->references('id')->on('chat_rooms');
             $table->text('message');
             $table->boolean('is_seen')->default(0);
             $table->timestamps();

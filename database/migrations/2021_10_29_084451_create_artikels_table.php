@@ -15,7 +15,8 @@ class CreateArtikelsTable extends Migration
     {
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string("judul");
             $table->string("image")->default('image/artikel-image.jpg');
             $table->longText("content");

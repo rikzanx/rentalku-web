@@ -15,9 +15,11 @@ class CreatePengemudisTable extends Migration
     {
         Schema::create('pengemudis', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('owner_id');
-            $table->bigInteger('harga'); //harga per hari
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->integer('harga'); //harga per hari
             $table->timestamps();
         });
     }

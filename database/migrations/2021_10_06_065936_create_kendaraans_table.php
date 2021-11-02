@@ -15,10 +15,14 @@ class CreateKendaraansTable extends Migration
     {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('kategori_kota_id');
-            $table->bigInteger('kategori_seat_id');
-            $table->bigInteger('kategori_jenis_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('kategori_kota_id');
+            $table->foreign('kategori_kota_id')->references('id')->on('kategori_kotas');
+            $table->unsignedBigInteger('kategori_seat_id');
+            $table->foreign('kategori_seat_id')->references('id')->on('kategori_seats');
+            $table->unsignedBigInteger('kategori_jenis_id');
+            $table->foreign('kategori_jenis_id')->references('id')->on('kategori_jenis');
             $table->text('name');
             $table->text('nopol');
             $table->integer('harga');

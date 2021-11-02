@@ -15,8 +15,10 @@ class CreateRatingUsersTable extends Migration
     {
         Schema::create('rating_users', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('user_to_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_to_id');
+            $table->foreign('user_to_id')->references('id')->on('users');
             $table->integer('jumlah_bintang');
             $table->string('review');
             $table->timestamps();
