@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Pengemudi;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\KategoriSeat;
+use Illuminate\Http\Request;
 use Validator;
 
-class PengemudiController extends Controller
+class SeatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class PengemudiController extends Controller
      */
     public function index()
     {
-        
+        $jenis = KategoriSeat::all();
+
+        return response()->json($jenis, 200);
     }
 
     /**
@@ -37,11 +39,9 @@ class PengemudiController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), 
+        $validator = Validator::make($request->all(),
         [
-            'user_id' => 'required|integer',
-            'owner_id' => 'required|integer',
-            'harga' => 'required|integer'
+            'name' => 'required'
         ]);
 
         if($validator->fails())
@@ -49,17 +49,13 @@ class PengemudiController extends Controller
             return response()->json($validator->errors());
         }
 
+        $kategoriSeat = KategoriSeat::create([
+            'name' =>$request->name
+        ]);
 
-        $pengemudi = Pengemudi::create([
-            'user_id' => $request->user_id,
-            'owner_id' => $request->owner_id,
-            'harga' => $request->harga
-            
-         ]);
-
-         return response()->json([
-             "pengemudi" => $pengemudi
-        ],201);
+        return response()->json([
+            "kategori_seat" => $kategoriSeat
+       ],201);
     }
 
     /**
@@ -70,12 +66,7 @@ class PengemudiController extends Controller
      */
     public function show($id)
     {
-        $pengemudi = Pengemudi::findOrFail($id);
-        if (is_null($pengemudi)) {
-            return response()->json('Data not found', 404); 
-        }
-
-        return response()->json($pengemudi, 200);
+        //
     }
 
     /**
@@ -89,7 +80,6 @@ class PengemudiController extends Controller
         //
     }
 
-    
     /**
      * Update the specified resource in storage.
      *
@@ -99,11 +89,9 @@ class PengemudiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), 
+        $validator = Validator::make($request->all(),
         [
-            'user_id' => 'required',
-            'owner_id' => 'required',
-            'harga' => 'required|int'
+            'name' => 'required'
         ]);
 
         if($validator->fails())
@@ -111,18 +99,15 @@ class PengemudiController extends Controller
             return response()->json($validator->errors());
         }
 
-     
-        $pengemudi = Pengemudi::where('id',$id)->update([
-            'user_id' => $request->user_id,
-            'user_id' => $request->user_id,
-            'owner_id' => $request->owner_id,
-            'harga' => $request->harga
-         ]);
+        $kategori = KategoriSeat::where('id', $id)->update([
+            'name' => $request->name
+        ]);
 
-         $pengemudi_data = Pengemudi::where('id',$id)->get();
-         return response()->json([
-             "pengemudi" => $pengemudi_data
-        ],201);
+        $kategori_data = KategoriSeat::where('id', $id)->get();
+
+        return response()->json([
+            "kategori_jenis" => $kategori_data
+       ],201);
     }
 
     /**
@@ -131,9 +116,15 @@ class PengemudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pengemudi $pengemudi)
+    public function destroy($id)
     {
-        $pengemudi->delete();
+        $kategori = KategoriSeat::findOrFail($id);
+        if($kategori){
+            $kategori->delete();
+        }else{
+            return response()->json("Data gagal di hapus");
+        }
+        
 
         return response()->json("Data berhasil dihapus");
     }

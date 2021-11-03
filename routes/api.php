@@ -5,9 +5,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArtikelController;
-
+use App\Http\Controllers\API\JenisController;
 use App\Http\Controllers\API\KendaraanController;
+use App\Http\Controllers\API\KotaController;
+use App\Http\Controllers\API\MapsController;
 use App\Http\Controllers\API\PengemudiController;
+use App\Http\Controllers\API\SeatController;
 use App\Http\Controllers\API\UserMessageController;
 
 /*
@@ -62,4 +65,28 @@ Route::get('/user/profil/{id}', [UserController::class, 'show'])->name('user.sho
 
 //pengemudi
 Route::post('/pengemudi/store', [PengemudiController::class, 'store'])->name('pengemudi.store');
+Route::post('/pengemudi/update/{id}', [PengemudiController::class, 'update'])->name('pengemudi.update');
 Route::delete('/pengemudi/delete/{pengemudi_id}', [PengemudiController::class, 'destroy'])->name('pengemudi.destroy');
+
+//maps
+Route::get('/maps/lat_to_address', [MapsController::class, 'latToAddress'])->name('maps.lat');
+Route::get('/maps/address_to_lat', [MapsController::class, 'addressToLat'])->name('maps.long');
+Route::get('/maps/track/{kendaraan_id}', [MapsController::class, 'kendaraanTrack'])->name('maps.track');
+
+//jenis
+Route::get('/kategori/jenis', [JenisController::class, 'index'])->name('jenis.show');
+Route::post('/kategori/jenis/create', [JenisController::class, 'store'])->name('jenis.create');
+Route::post('/kategori/jenis/update/{id}', [JenisController::class, 'update'])->name('jenis.update');
+Route::delete('/kategori/jenis/delete/{kategori_id}', [JenisController::class, 'destroy'])->name('jenis.destroy');
+
+//kota
+Route::get('/kategori/kota', [KotaController::class, 'index'])->name('kota.show');
+Route::post('/kategori/kota/create', [KotaController::class, 'store'])->name('kota.create');
+Route::post('/kategori/kota/update/{id}', [KotaController::class, 'update'])->name('kota.update');
+Route::delete('/kategori/kota/delete/{kategori_id}', [KotaController::class, 'destroy'])->name('kota.destroy');
+
+//seat
+Route::get('/kategori/seat', [SeatController::class, 'index'])->name('seat.show');
+Route::post('/kategori/seat/create', [SeatController::class, 'store'])->name('seat.create');
+Route::post('/kategori/seat/update/{id}', [SeatController::class, 'update'])->name('seat.update');
+Route::delete('/kategori/seat/delete/{kategori_id}', [SeatController::class, 'destroy'])->name('seat.destroy');
