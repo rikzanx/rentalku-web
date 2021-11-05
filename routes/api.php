@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArtikelController;
+use App\Http\Controllers\API\DompetkuController;
 use App\Http\Controllers\API\JenisController;
 use App\Http\Controllers\API\KendaraanController;
 use App\Http\Controllers\API\KotaController;
@@ -90,3 +91,7 @@ Route::get('/kategori/seat', [SeatController::class, 'index'])->name('seat.show'
 Route::post('/kategori/seat/create', [SeatController::class, 'store'])->name('seat.create');
 Route::post('/kategori/seat/update/{id}', [SeatController::class, 'update'])->name('seat.update');
 Route::delete('/kategori/seat/delete/{kategori_id}', [SeatController::class, 'destroy'])->name('seat.destroy');
+
+//Dompetku
+Route::get('/dompetku/{user_id}', [DompetkuController::class, 'show'])->name('dompetku.show');
+Route::post('/dompetku/update/{user_id}', [DompetkuController::class, 'update'])->name('dompetku.update');
