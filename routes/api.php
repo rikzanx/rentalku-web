@@ -12,7 +12,9 @@ use App\Http\Controllers\API\KotaController;
 use App\Http\Controllers\API\MapsController;
 use App\Http\Controllers\API\PengemudiController;
 use App\Http\Controllers\API\SeatController;
+use App\Http\Controllers\API\TransaksiDompetController;
 use App\Http\Controllers\API\UserMessageController;
+use App\Models\TransaksiDompet;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +97,8 @@ Route::delete('/kategori/seat/delete/{kategori_id}', [SeatController::class, 'de
 //Dompetku
 Route::get('/dompetku/{user_id}', [DompetkuController::class, 'show'])->name('dompetku.show');
 Route::post('/dompetku/update/{user_id}', [DompetkuController::class, 'update'])->name('dompetku.update');
+
+//Transaksi Dompet
+Route::get('/transaksi_dompet/{id}', [TransaksiDompetController::class, 'show'])->name('transaksiDompet.show');
+Route::post('/transaksi_dompet/create', [TransaksiDompetController::class, 'store'])->name('transaksiDompet.create');
+Route::delete('/transaksi_dompet/delete/{dompet_id}', [TransaksiDompetController::class, 'destroy'])->name('transaksiDompet.destroy');

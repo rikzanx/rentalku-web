@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Pengemudi;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi;
+use App\Models\TransaksiDompet;
+use Illuminate\Http\Request;
 use Validator;
 
-class PengemudiController extends Controller
+class TransaksiDompetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,8 +41,13 @@ class PengemudiController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'user_id' => 'required|integer',
-            'owner_id' => 'required|integer',
-            'harga' => 'required|integer'
+            'dompet_id' => 'required|integer',
+            'name' => 'required',
+            'jumlah' => 'required',
+            'kode_unik' => 'required',
+            'bank' => 'required',
+            'no_rek' => 'required',
+            'status' => 'required'
         ]);
 
         if($validator->fails())
@@ -50,17 +56,23 @@ class PengemudiController extends Controller
         }
 
 
-        $pengemudi = Pengemudi::create([
+        $transaksiDompet = TransaksiDompet::create([
             'user_id' => $request->user_id,
-            'owner_id' => $request->owner_id,
-            'harga' => $request->harga
+            'dompet_id' => $request->dompet_id,
+            'name' => $request->name,
+            'jumlah' => $request->jumlah,
+            'kode_unik' => $request->kode_unik,
+            'bank' => $request->bank,
+            'no_rek' => $request->no_rek,
+            'status' => $request->status
             
          ]);
 
          return response()->json([
-             "pengemudi" => $pengemudi
+             "transaksi_dompet" => $transaksiDompet
         ],201);
     }
+
 
     /**
      * Display the specified resource.
@@ -70,12 +82,12 @@ class PengemudiController extends Controller
      */
     public function show($id)
     {
-        $pengemudi = Pengemudi::findOrFail($id);
-        if (is_null($pengemudi)) {
+        $transaksiDompet = TransaksiDompet::findOrFail($id);
+        if (is_null($transaksiDompet)) {
             return response()->json('Data not found', 404); 
         }
 
-        return response()->json($pengemudi, 200);
+        return response()->json($transaksiDompet, 200);
     }
 
     /**
@@ -89,7 +101,6 @@ class PengemudiController extends Controller
         //
     }
 
-    
     /**
      * Update the specified resource in storage.
      *
@@ -101,9 +112,14 @@ class PengemudiController extends Controller
     {
         $validator = Validator::make($request->all(), 
         [
-            'user_id' => 'required',
-            'owner_id' => 'required',
-            'harga' => 'required|int'
+            'user_id' => 'required|integer',
+            'dompet_id' => 'required|integer',
+            'name' => 'required',
+            'jumlah' => 'required',
+            'kode_unik' => 'required',
+            'bank' => 'required',
+            'no_rek' => 'required',
+            'status' => 'required'
         ]);
 
         if($validator->fails())
@@ -111,17 +127,21 @@ class PengemudiController extends Controller
             return response()->json($validator->errors());
         }
 
-     
-        $pengemudi = Pengemudi::where('id',$id)->update([
+        $transaksiDompet = TransaksiDompet::where('id',$id)->update([
             'user_id' => $request->user_id,
-            'user_id' => $request->user_id,
-            'owner_id' => $request->owner_id,
-            'harga' => $request->harga
-         ]);
+            'dompet_id' => $request->dompet_id,
+            'name' => $request->name,
+            'jumlah' => $request->jumlah,
+            'kode_unik' => $request->kode_unik,
+            'bank' => $request->bank,
+            'no_rek' => $request->no_rek,
+            'status' => $request->status
+        ]);
 
-         $pengemudi_data = Pengemudi::where('id',$id)->get();
+        $transaksiDompetData = TransaksiDompet::where('id', $id)->get();
+     
          return response()->json([
-             "pengemudi" => $pengemudi_data
+             "transaksi_dompet" => $transaksiDompetData
         ],201);
     }
 
@@ -131,11 +151,11 @@ class PengemudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pengemudi $pengemudi, $id)
+    public function destroy(TransaksiDompet $transaksiDompet,$id)
     {
-        $pengemudi = Pengemudi::findOrFail($id);
-        if($pengemudi){
-            $pengemudi->delete();
+        $transaksiDompet = TransaksiDompet::findOrFail($id);
+        if($transaksiDompet){
+            $transaksiDompet->delete();
         }else{
             return response()->json("Data gagal di hapus");
         }
