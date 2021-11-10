@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\KategoriJenis;
+use App\Models\Kategori;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Validator;
 
-class JenisController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class JenisController extends Controller
      */
     public function index()
     {
-        $jenis = KategoriJenis::all();
+        $kategori = Kategori::all();
 
-        return response()->json($jenis, 200);
+        return response()->json($kategori, 200);
     }
 
     /**
@@ -50,13 +50,15 @@ class JenisController extends Controller
             return response()->json($validator->errors());
         }
 
-        $kategoriJenis = KategoriJenis::create([
+        $kategori = Kategori::create([
             'name' =>$request->name
         ]);
-
-        return response()->json([
-            "kategori_jenis" => $kategoriJenis
-       ],201);
+        $response = [
+            "data" => $kategori,
+            "status" => "success",
+            "meesage"  => "Data Success created"
+        ];
+        return response()->json($response,201);
     }
 
     /**
@@ -100,28 +102,33 @@ class JenisController extends Controller
             return response()->json($validator->errors());
         }
 
-        $kategori = KategoriJenis::where('id', $id)->update([
+        $kategori = Kategori::where('id', $id)->update([
             'name' => $request->name
         ]);
 
-        $kategori_data = KategoriJenis::where('id', $id)->get();
+        $kategori_data = Kategori::where('id', $id)->get();
 
-        return response()->json([
-            "kategori_jenis" => $kategori_data
-       ],201);
+        return response()->json($kategori_data,201);
     }
 
     public function destroy($id)
     {
-        $kategori = KategoriJenis::findOrFail($id);
+        $kategori = Kategori::findOrFail($id);
         if($kategori){
             $kategori->delete();
         }else{
+            $response = [
+                "status" => "success",
+                "message" => "Data berhasil dihapus"
+            ];
             return response()->json("Data gagal di hapus");
         }
-        
 
-        return response()->json("Data berhasil dihapus");
+        $response = [
+            "status" => "success",
+            "message" => "Data berhasil dihapus"
+        ];
+        return response()->json($response);
     }
 
 }

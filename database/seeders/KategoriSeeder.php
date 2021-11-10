@@ -14,29 +14,12 @@ class KategoriSeeder extends Seeder
      */
     public function run()
     {
-        $kategori_kota = [
-            ['name'=> "Surabaya"],
-            ['name'=> "Yogayakarta"],
-            ['name'=> "Bandung"],
-            ['name'=> "Jakarta"],
-            ['name'=> "Malang"],
-        ];
-        
-        DB::table("kategori_kotas")->insert($kategori_kota);
-
-        $kategori_seat = [
-            ['name'=> "4"],
-            ['name'=> "7"],
-            ['name'=> "9"],
-        ];
-        DB::table("kategori_seats")->insert($kategori_seat);
-
-        $kategori_jenis = [
+        $kategori = [
             ['name'=> "MVP"],
             ['name'=> "Sedan"],
             ['name'=> "SUV"],
             ['name'=> "Bus"],
         ];
-        DB::table("kategori_jenis")->insert($kategori_jenis);
+        DB::table("kategoris")->insert($kategori);
     }
 }

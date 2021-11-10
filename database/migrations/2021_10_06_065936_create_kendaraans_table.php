@@ -17,13 +17,11 @@ class CreateKendaraansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('kategori_kota_id');
-            $table->foreign('kategori_kota_id')->references('id')->on('kategori_kotas')->onDelete('cascade');
-            $table->unsignedBigInteger('kategori_seat_id');
-            $table->foreign('kategori_seat_id')->references('id')->on('kategori_seats')->onDelete('cascade');
-            $table->unsignedBigInteger('kategori_jenis_id');
-            $table->foreign('kategori_jenis_id')->references('id')->on('kategori_jenis')->onDelete('cascade');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
             $table->text('name');
+            $table->text('kota');
+            $table->integer('seat');
             $table->text('nopol');
             $table->integer('harga');
             $table->integer('tahun');
