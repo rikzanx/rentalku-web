@@ -12,6 +12,7 @@ use App\Http\Controllers\API\KotaController;
 use App\Http\Controllers\API\MapsController;
 use App\Http\Controllers\API\PengemudiController;
 use App\Http\Controllers\API\SeatController;
+use App\Http\Controllers\API\TransaksiController;
 use App\Http\Controllers\API\TransaksiDompetController;
 use App\Http\Controllers\API\UserMessageController;
 use App\Models\TransaksiDompet;
@@ -90,3 +91,9 @@ Route::post('/dompetku/update/{user_id}', [DompetkuController::class, 'update'])
 Route::get('/transaksi_dompet/{id}', [TransaksiDompetController::class, 'show'])->name('transaksiDompet.show');
 Route::post('/transaksi_dompet/create', [TransaksiDompetController::class, 'store'])->name('transaksiDompet.create');
 Route::delete('/transaksi_dompet/delete/{dompet_id}', [TransaksiDompetController::class, 'destroy'])->name('transaksiDompet.destroy');
+
+//Transaksi
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::post('/transaksi/create', [TransaksiController::class, 'store'])->name('transaksi.create');
+Route::post('/transaksi/update/{transaksi_id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/delete/{transaksi_id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');

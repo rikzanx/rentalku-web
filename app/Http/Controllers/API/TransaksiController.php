@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\TransaksiDompet;
-use Illuminate\Http\Request;
+use App\Models\Transaksi;
 use Validator;
+use Illuminate\Http\Request;
 
-class TransaksiDompetController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class TransaksiDompetController extends Controller
      */
     public function index()
     {
-        
+        $transaksi = Transaksi::get();
+
+        return response()->json($transaksi, 200);
     }
 
     /**
@@ -26,7 +28,7 @@ class TransaksiDompetController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -40,13 +42,13 @@ class TransaksiDompetController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'user_id' => 'required|integer',
-            'dompet_id' => 'required|integer',
-            'name' => 'required',
-            'jumlah' => 'required',
-            'kode_unik' => 'required',
-            'bank' => 'required',
-            'no_rek' => 'required',
-            'status' => 'required'
+            'kendaraan_id' => 'required|integer',
+            'waktu_ambil' => 'required',
+            'durasi' => 'required',
+            'denda' => 'required',
+            'status' => 'required',
+            'lat' => 'required',
+            'long' => 'required'
         ]);
 
         if($validator->fails())
@@ -55,23 +57,20 @@ class TransaksiDompetController extends Controller
         }
 
 
-        $transaksiDompet = TransaksiDompet::create([
+        $transaksi = Transaksi::create([
             'user_id' => $request->user_id,
-            'dompet_id' => $request->dompet_id,
-            'name' => $request->name,
-            'jumlah' => $request->jumlah,
-            'kode_unik' => $request->kode_unik,
-            'bank' => $request->bank,
-            'no_rek' => $request->no_rek,
-            'status' => $request->status
+            'kendaraan_id' => $request->kendaraan_id,
+            'waktu_ambil' => $request->waktu_ambil,
+            'durasi' => $request->durasi,
+            'denda' => $request->denda,
+            'status' => $request->status,
+            'lat' => $request->lat,
+            'long' => $request->long
             
          ]);
 
-         return response()->json([
-             "transaksi_dompet" => $transaksiDompet
-        ],201);
+         return response()->json($transaksi,201);
     }
-
 
     /**
      * Display the specified resource.
@@ -81,12 +80,7 @@ class TransaksiDompetController extends Controller
      */
     public function show($id)
     {
-        $transaksiDompet = TransaksiDompet::findOrFail($id);
-        if (is_null($transaksiDompet)) {
-            return response()->json('Data not found', 404); 
-        }
-
-        return response()->json($transaksiDompet, 200);
+        //
     }
 
     /**
@@ -112,13 +106,13 @@ class TransaksiDompetController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'user_id' => 'required|integer',
-            'dompet_id' => 'required|integer',
-            'name' => 'required',
-            'jumlah' => 'required',
-            'kode_unik' => 'required',
-            'bank' => 'required',
-            'no_rek' => 'required',
-            'status' => 'required'
+            'kendaraan_id' => 'required|integer',
+            'waktu_ambil' => 'required',
+            'durasi' => 'required',
+            'denda' => 'required',
+            'status' => 'required',
+            'lat' => 'required',
+            'long' => 'required'
         ]);
 
         if($validator->fails())
@@ -126,22 +120,22 @@ class TransaksiDompetController extends Controller
             return response()->json($validator->errors());
         }
 
-        $transaksiDompet = TransaksiDompet::where('id',$id)->update([
+        $transaksi = Transaksi::where('id', $id)->update([
             'user_id' => $request->user_id,
-            'dompet_id' => $request->dompet_id,
-            'name' => $request->name,
-            'jumlah' => $request->jumlah,
-            'kode_unik' => $request->kode_unik,
-            'bank' => $request->bank,
-            'no_rek' => $request->no_rek,
-            'status' => $request->status
+            'kendaraan_id' => $request->kendaraan_id,
+            'waktu_ambil' => $request->waktu_ambil,
+            'durasi' => $request->durasi,
+            'denda' => $request->denda,
+            'status' => $request->status,
+            'lat' => $request->lat,
+            'long' => $request->long
         ]);
 
-        $transaksiDompetData = TransaksiDompet::where('id', $id)->get();
-     
-         return response()->json([
-             "transaksi_dompet" => $transaksiDompetData
-        ],201);
+        $transaksiData = Transaksi::where('id', $id)->get();
+
+        
+
+         return response()->json($transaksiData,201);
     }
 
     /**
@@ -150,11 +144,11 @@ class TransaksiDompetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TransaksiDompet $transaksiDompet,$id)
+    public function destroy($id)
     {
-        $transaksiDompet = TransaksiDompet::findOrFail($id);
-        if($transaksiDompet){
-            $transaksiDompet->delete();
+        $transaksi = Transaksi::findOrFail($id);
+        if($transaksi){
+            $transaksi->delete();
         }else{
             return response()->json("Data gagal di hapus");
         }

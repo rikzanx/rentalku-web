@@ -99,11 +99,11 @@ class KotaController extends Controller
             return response()->json($validator->errors());
         }
 
-        $kategori = KategoriKota::where('id', $id)->update([
+        $kategori = Kota::where('id', $id)->update([
             'name' => $request->name
         ]);
 
-        $kategori_data = KategoriKota::where('id', $id)->get();
+        $kategori_data = Kota::where('id', $id)->get();
 
         return response()->json([
             "kategori_kota" => $kategori_data
