@@ -4,13 +4,7 @@ use App\Models\Pengemudi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiDompet;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use App\Http\Controllers\API\AuthController;
-=======
-use App\Http\Controllers\API\KotaController;
 use App\Http\Controllers\API\MapsController;
-use App\Http\Controllers\API\SeatController;
->>>>>>> 6fc7143... FIX - Rating, Transaksi API-Backend API
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\DompetkuController;
@@ -22,7 +16,7 @@ use App\Http\Controllers\API\RatingMobilController;
 use App\Http\Controllers\API\UserMessageController;
 use App\Http\Controllers\API\RatingKendaraanController;
 use App\Http\Controllers\API\TransaksiDompetController;
-use App\Models\RatingKendaraan;
+
 
 /*
 |--------------------------------------------------------------------------
