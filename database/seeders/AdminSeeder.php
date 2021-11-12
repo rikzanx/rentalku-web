@@ -25,5 +25,11 @@ class AdminSeeder extends Seeder
             "role" => "admin",
             "created_at" => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        DB::table("dompets")->insert([
+            "user_id" => 1,
+            "saldo" => 0,
+            "created_at" => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 }

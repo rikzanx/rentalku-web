@@ -55,24 +55,46 @@ class TransaksiController extends Controller
             return response()->json($validator->errors());
         }
 
-        
-
         $kendaraan = Kendaraan::where('id', $request->kendaraan_id)->first();
 
         $saldo = TransaksiDompet::where('user_id', $request->user_id)->groupBy('user_id')->sum('jumlah');
       
-        
 
-        $hargaTotal = $kendaraan['harga'] * $request->durasi;
+        $jumlah = $kendaraan['harga'] * $request->durasi;
+     
+        if ($saldo >= $jumlah) {
+            //jika saldo cukup
+            $dompet = TransaksiDompet::create([
+                "user_id" => $request->user_id,
+                "dompet_id" => $request->user_id,
+                "name" => 'Pembayaran',
+                "jumlah" => (-1 * $jumlah),
+                "kode_unik" => 0,
+                "bank" => null,
+                "no_rek" => null,
+                "status" => 'Berhasil'
 
-        if ($saldo >= $hargaTotal) {
+            ]);
             $transaksi = Transaksi::create($request->all());
+            $transaksi['dompet'] = $dompet;
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil dibuat',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
 
-            return response()->json($transaksi,201);
+            return response()->json($response,201);
         }
 
         else {
-            return response()->json("Gagal", 200);
+            $response = [
+                "status" => "error",
+                "message" => 'Saldo tidak cukup',
+                "errors" => null,
+                "content" => null,
+            ];
+            return response()->json($response, 200);
         }
         
 
@@ -133,7 +155,13 @@ class TransaksiController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Validator Error',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response);
         }
 
         $transaksi = Transaksi::where('id', $id)->update([
