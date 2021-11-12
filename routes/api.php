@@ -2,21 +2,27 @@
 
 use App\Models\Pengemudi;
 use Illuminate\Http\Request;
+use App\Models\TransaksiDompet;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\API\AuthController;
+=======
+use App\Http\Controllers\API\KotaController;
+use App\Http\Controllers\API\MapsController;
+use App\Http\Controllers\API\SeatController;
+>>>>>>> 6fc7143... FIX - Rating, Transaksi API-Backend API
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\DompetkuController;
 use App\Http\Controllers\API\KategoriController;
 use App\Http\Controllers\API\KendaraanController;
-use App\Http\Controllers\API\KotaController;
-use App\Http\Controllers\API\MapsController;
 use App\Http\Controllers\API\PengemudiController;
-use App\Http\Controllers\API\SeatController;
 use App\Http\Controllers\API\TransaksiController;
-use App\Http\Controllers\API\TransaksiDompetController;
+use App\Http\Controllers\API\RatingMobilController;
 use App\Http\Controllers\API\UserMessageController;
-use App\Models\TransaksiDompet;
+use App\Http\Controllers\API\RatingKendaraanController;
+use App\Http\Controllers\API\TransaksiDompetController;
+use App\Models\RatingKendaraan;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,7 +109,19 @@ Route::post('/transaksi_dompet/create', [TransaksiDompetController::class, 'stor
 Route::delete('/transaksi_dompet/delete/{dompet_id}', [TransaksiDompetController::class, 'destroy'])->name('api.transaksiDompet.destroy');
 
 //Transaksi
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('api.transaksi.index');
-Route::post('/transaksi/create', [TransaksiController::class, 'store'])->name('api.transaksi.create');
-Route::post('/transaksi/update/{transaksi_id}', [TransaksiController::class, 'update'])->name('api.transaksi.update');
-Route::delete('/transaksi/delete/{transaksi_id}', [TransaksiController::class, 'destroy'])->name('api.transaksi.destroy');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::post('/transaksi/create', [TransaksiController::class, 'store'])->name('transaksi.create');
+Route::post('/transaksi/update/{transaksi_id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/delete/{transaksi_id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+Route::get('transaksi/show/{user_id}', [TransaksiController::class, 'show'])->name('transaksi.show');
+Route::get('transaksi/{transaksi_id}', [TransaksiController::class, 'showId'])->name('transaksi.showId');
+
+//Rating Kendaraan
+Route::post('/rating/create', [RatingKendaraanController::class, 'store'])->name('rating.create');
+Route::post('/rating/update/{rating_id}', [RatingKendaraanController::class, 'update'])->name('rating.update');
+Route::delete('rating/delete/{rating_id}', [RatingKendaraanController::class, 'destroy'])->name('rating.destroy');
+Route::get('rating/all/{kendaraan_id}', [RatingKendaraanController::class, 'show'])->name('rating.show');
+Route::get('rating/{rating_id}', [RatingKendaraanController::class, 'showId'])->name('rating.showId');
+
+//Transaksi Dompet
+Route::get('dompetku/saldo/{user_id}', [TransaksiDompetController::class, 'saldoDompet'])->name('transaksi.dompet');

@@ -18,10 +18,6 @@ class Dompet extends Model
         return $this->hasOne('App\Models\User','id','user_id');
     }
 
-    public function deposit(){
-        return $this->hasMany('App\Models\Deposit');
-    }
-
     public function transaksiDompet(){
         return $this->hasMany('App\Models\TransaksiDompet');
     }

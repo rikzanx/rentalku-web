@@ -32,7 +32,7 @@ class Kendaraan extends Model
         return $this->hasOne('App\Models\User','id','user_id');
     }
     
-    public function kategoriJenis(){
+    public function kategori(){
         return $this->hasOne('App\Models\Kategori','id','kategori_id');
     }
 

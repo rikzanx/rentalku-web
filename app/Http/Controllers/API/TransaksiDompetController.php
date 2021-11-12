@@ -89,6 +89,25 @@ class TransaksiDompetController extends Controller
         return response()->json($transaksiDompet, 200);
     }
 
+    public function saldoDompet($user_id)
+    {
+        
+        $cek = TransaksiDompet::where('user_id', $user_id)->first();
+       
+        if($cek!= null){
+            $dompet = TransaksiDompet::where('user_id', $user_id)
+            ->selectRaw("SUM(jumlah) as jumlah")->groupBy('user_id')
+            ->get();
+            return response()->json($dompet, 200);
+        }
+        $response =Array(
+            Array(
+                "jumlah" => 0
+            )
+        );
+        return response()->json($response, 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

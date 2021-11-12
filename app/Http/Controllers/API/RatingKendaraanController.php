@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Models\Kendaraan;
-use App\Models\Transaksi;
-use App\Models\TransaksiDompet;
 use Validator;
 use Illuminate\Http\Request;
+use App\Models\RatingKendaraan;
+use App\Http\Controllers\Controller;
+use App\Models\RatingUser;
 
-class TransaksiController extends Controller
+class RatingKendaraanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +17,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::get();
-
-        return response()->json($transaksi, 200);
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -45,9 +42,8 @@ class TransaksiController extends Controller
         [
             'user_id' => 'required|integer',
             'kendaraan_id' => 'required|integer',
-            'waktu_ambil' => 'required',
-            'durasi' => 'required'
-            
+            'jumlah_bintang' => 'required|integer',
+            'review' => 'required'
         ]);
 
         if($validator->fails())
@@ -55,28 +51,16 @@ class TransaksiController extends Controller
             return response()->json($validator->errors());
         }
 
-        
 
-        $kendaraan = Kendaraan::where('id', $request->kendaraan_id)->first();
+        $rating = RatingKendaraan::create([
+            'user_id' => $request->user_id,
+            'kendaraan_id' => $request->kendaraan_id,
+            'jumlah_bintang' => $request->jumlah_bintang,
+            'review' => $request->review
+            
+         ]);
 
-        $saldo = TransaksiDompet::where('user_id', $request->user_id)->groupBy('user_id')->sum('jumlah');
-      
-        
-
-        $hargaTotal = $kendaraan['harga'] * $request->durasi;
-
-        if ($saldo >= $hargaTotal) {
-            $transaksi = Transaksi::create($request->all());
-
-            return response()->json($transaksi,201);
-        }
-
-        else {
-            return response()->json("Gagal", 200);
-        }
-        
-
-        
+         return response()->json($rating,201);
     }
 
     /**
@@ -85,18 +69,18 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show($kendaraan_id)
     {
-        $transaksi = Transaksi::where('user_id', $user_id)->get();
+        $rating = RatingKendaraan::where('kendaraan_id', $kendaraan_id)->with('user','kendaraan')->get();
 
-        return response($transaksi, 200);
+        return response($rating, 200);
     }
 
-    public function showId($transaksi_id)
+    public function showId($rating_id)
     {
-        $transaksi = Transaksi::where('id', $transaksi_id)->get();
-
-        return response($transaksi, 200);
+        $rating = RatingKendaraan::where('rating_id', $rating_id)->with('user','kendaraan')->get();
+        
+        return response($rating, 200);
     }
 
     /**
@@ -123,12 +107,8 @@ class TransaksiController extends Controller
         [
             'user_id' => 'required|integer',
             'kendaraan_id' => 'required|integer',
-            'waktu_ambil' => 'required',
-            'durasi' => 'required',
-            'denda' => 'required',
-            'status' => 'required',
-            'lat' => 'required',
-            'long' => 'required'
+            'jumlah_bintang' => 'required|integer',
+            'review' => 'required'
         ]);
 
         if($validator->fails())
@@ -136,22 +116,17 @@ class TransaksiController extends Controller
             return response()->json($validator->errors());
         }
 
-        $transaksi = Transaksi::where('id', $id)->update([
+
+        $rating = RatingKendaraan::where('id',$id)->update([
             'user_id' => $request->user_id,
             'kendaraan_id' => $request->kendaraan_id,
-            'waktu_ambil' => $request->waktu_ambil,
-            'durasi' => $request->durasi,
-            'denda' => $request->denda,
-            'status' => $request->status,
-            'lat' => $request->lat,
-            'long' => $request->long
-        ]);
+            'jumlah_bintang' => $request->jumlah_bintang,
+            'review' => $request->review
+            
+         ]);
 
-        $transaksiData = Transaksi::where('id', $id)->get();
+         $ratingData = RatingKendaraan::where('id', $id)->get();
 
-        
-
-         return response()->json($transaksiData,201);
     }
 
     /**
@@ -162,9 +137,9 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        $transaksi = Transaksi::findOrFail($id);
-        if($transaksi){
-            $transaksi->delete();
+        $rating = RatingKendaraan::findOrFail($id);
+        if($rating){
+            $rating->delete();
         }else{
             return response()->json("Data gagal di hapus");
         }
@@ -172,6 +147,4 @@ class TransaksiController extends Controller
 
         return response()->json("Data berhasil dihapus");
     }
-
-    
 }
