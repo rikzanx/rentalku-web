@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiDompet;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MapsController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\DompetkuController;
