@@ -100,6 +100,7 @@ class ArtikelSeeder extends Seeder
             Ini komponen-komponen yang perlu perhatian lebih ketika umur mobil sudah mencapai 5 tahun:",
             "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
-
+        // add slider image
+        DB::table("sliders")->insert([]);
     }
 }

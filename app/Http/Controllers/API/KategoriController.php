@@ -56,7 +56,7 @@ class KategoriController extends Controller
         $response = [
             "data" => $kategori,
             "status" => "success",
-            "meesage"  => "Data Success created"
+            "message"  => "Data Success created"
         ];
         return response()->json($response,201);
     }

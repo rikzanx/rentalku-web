@@ -19,7 +19,13 @@ class AuthController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors());       
+            $response = [
+                "status" => "error",
+                "message" => 'Validator Error',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);       
         }
         $user = User::create([
             'name' => $request->name,
@@ -28,39 +34,91 @@ class AuthController extends Controller
          ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()
-            ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
+        $response = [
+            'status' => 'success',
+            'msg' => 'Register successfully',
+            'errors' => null,
+            'content' => [
+                "status_code" => 200,
+                "access_token" => $token,
+                "token_type" => "Bearer"
+            ],
+        ];
+        return response()->json($response, 200);
     }
 
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string'
+        ]);
+
+        if($validator->fails()){
+            $response = [
+                "status" => "error",
+                "message" => 'Validator Error',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);       
+        }
+
         if (!Auth::attempt($request->only('email', 'password')))
         {
+            $response = [
+                "status" => "error",
+                "message" => "Unauthorized",
+                "errors" => null,
+                "content" => null,
+            ];
             return response()
-                ->json(['message' => 'Unauthorized'], 401);
+                ->json($response, 401);
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()
-            ->json([
-                'user' => $user,
-                'message' => 'Hi '.$user->name.', welcome to home',
-                'access_token' => $token, 
-                'token_type' => 'Bearer', 
-            ]);
+        $response = [
+            "status" => "success",
+            "message" => "Login Succefully",
+            "errors" => null,
+            "content" => [
+                "status_code" => 200,
+                "access_token" => $token,
+                "token_type" => "Bearer"
+            ],
+        ];
+        return response()->json($response,200);
     }
 
     // method for user logout and delete token
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
-
-        return [
-            'message' => 'Sukses Logout'
+        $user = $request->user();
+        $user->currentAccessToken()->delete();
+        $response = [
+            'status' => 'success',
+            'msg' => 'Logout successfully',
+            'errors' => null,
+            'content' => null,
         ];
+
+        return response()->json($response,200);
+    }
+    public function logoutall(Request $request) {
+        $user = $request->user();
+        $user->tokens()->delete();
+        $response = [
+            'status' => 'success',
+            'msg' => 'Logout successfully',
+            'errors' => null,
+            'content' => null,
+        ];
+        return response()->json($response, 200);
+    }
+    public function me(Request $request)
+    {
+    return $request->user();
     }
 }
