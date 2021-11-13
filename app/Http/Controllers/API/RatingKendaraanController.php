@@ -78,7 +78,7 @@ class RatingKendaraanController extends Controller
 
     public function showId($rating_id)
     {
-        $rating = RatingKendaraan::where('rating_id', $rating_id)->with('user','kendaraan')->get();
+        $rating = RatingKendaraan::get();
         
         return response($rating, 200);
     }
