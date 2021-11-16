@@ -120,3 +120,6 @@ Route::get('rating/{rating_id}', [RatingKendaraanController::class, 'showId'])->
 
 //Transaksi Dompet
 Route::get('dompetku/saldo/{user_id}', [TransaksiDompetController::class, 'saldoDompet'])->name('transaksi.dompet');
+
+//Profile
+Route::post('user/profile/update/{user_id}', [UserController::class, 'update'])->name('user.update');
