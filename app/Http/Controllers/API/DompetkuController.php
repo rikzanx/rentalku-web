@@ -11,7 +11,7 @@ class DompetkuController extends Controller
 {
     public function show($id)
     {
-        $dompet = Dompet::findOrFail($id);
+        $dompet = Dompet::with('user', 'transaksiDompet')->findOrFail($id);
         if (is_null($dompet)) {
             return response()->json('Data not found', 404); 
         }

@@ -81,7 +81,7 @@ class TransaksiDompetController extends Controller
      */
     public function show($id)
     {
-        $transaksiDompet = TransaksiDompet::findOrFail($id);
+        $transaksiDompet = TransaksiDompet::with('user', 'dompet')->findOrFail($id);
         if (is_null($transaksiDompet)) {
             return response()->json('Data not found', 404); 
         }
@@ -96,7 +96,7 @@ class TransaksiDompetController extends Controller
        
         if($cek!= null){
             $dompet = TransaksiDompet::where('user_id', $user_id)
-            ->selectRaw("SUM(jumlah) as jumlah")->groupBy('user_id')
+            ->selectRaw("SUM(jumlah) as jumlah")->groupBy('user_id')->with('user','dompet')
             ->get();
             return response()->json($dompet, 200);
         }

@@ -17,7 +17,7 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $artikel = Artikel::get();
+        $artikel = Artikel::with('user')->get();
         return response()->json($artikel, 200);
     }
 

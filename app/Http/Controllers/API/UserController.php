@@ -49,7 +49,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('kendaraan', 'pengemudi', 'owner', 'transaksi', 
+        'room', 'message', 'dompet', 'transaksiDompet', 'ratingKendaraan', 'ratingUser', 'user_role', 'artikel')->findOrFail($id);
         if (is_null($user)) {
             return response()->json('Data not found', 404); 
         }

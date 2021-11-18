@@ -22,7 +22,7 @@ class KendaraanController extends Controller
         $filter_count = count($request->all());
         if($filter_count > 0){
 
-            $kendaraan = Kendaraan::with('user')->orWhere('kategori_id', $kategori)->orWhere('tahun', $tahun)->get();
+            $kendaraan = Kendaraan::with('user','kategori','transaksi','ratingKendaraan')->orWhere('kategori_id', $kategori)->orWhere('tahun', $tahun)->get();
         }else{
             $kendaraan = Kendaraan::with('user')->get();
         }

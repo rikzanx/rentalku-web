@@ -63,8 +63,10 @@ Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'edit'])->nam
 Route::delete('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('api.kendaraan.destroy');
 
 //Pengemudi
-Route::get('/pengemudi', [PengemudiController::class, 'index'])->name('api.pengemudi');
+
 Route::get('/pengemudi/{id}', [PengemudiController::class, 'show'])->name('api.pengemudi.show');
+Route::get('/pengemudi/create', [PengemudiController::class, 'store'])->name('api.pengemudi.store');
+Route::get('/pengemudi/update/{pengemudi_id}', [PengemudiController::class, 'update'])->name('api.pengemudi.update');
 
 
 //artikel
@@ -96,20 +98,22 @@ Route::delete('/kategori/delete/{kategori_id}', [KategoriController::class, 'des
 
 //Dompetku
 Route::get('/dompetku/{user_id}', [DompetkuController::class, 'show'])->name('api.dompetku.show');
+Route::get('/dompetku/saldo/{user_id}', [TransaksiDompetController::class, 'saldoDompet'])->name('transaksi.dompet');
 Route::post('/dompetku/update/{user_id}', [DompetkuController::class, 'update'])->name('api.dompetku.update');
 
 //Transaksi Dompet
 Route::get('/transaksi_dompet/{id}', [TransaksiDompetController::class, 'show'])->name('api.transaksiDompet.show');
 Route::post('/transaksi_dompet/create', [TransaksiDompetController::class, 'store'])->name('api.transaksiDompet.create');
+Route::post('/transaksi_dompet/update/{id}', [TransaksiDompetController::class, 'update'])->name('api.transaksiDompet.update');
 Route::delete('/transaksi_dompet/delete/{dompet_id}', [TransaksiDompetController::class, 'destroy'])->name('api.transaksiDompet.destroy');
 
 //Transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 Route::post('/transaksi/create', [TransaksiController::class, 'store'])->name('transaksi.create');
+Route::get('transaksi/{transaksi_id}', [TransaksiController::class, 'showId'])->name('transaksi.showId');
 Route::post('/transaksi/update/{transaksi_id}', [TransaksiController::class, 'update'])->name('transaksi.update');
 Route::delete('/transaksi/delete/{transaksi_id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 Route::get('transaksi/show/{user_id}', [TransaksiController::class, 'show'])->name('transaksi.show');
-Route::get('transaksi/{transaksi_id}', [TransaksiController::class, 'showId'])->name('transaksi.showId');
 
 //Rating Kendaraan
 Route::post('/rating/create', [RatingKendaraanController::class, 'store'])->name('rating.create');
@@ -118,8 +122,6 @@ Route::delete('rating/delete/{rating_id}', [RatingKendaraanController::class, 'd
 Route::get('rating/all/{kendaraan_id}', [RatingKendaraanController::class, 'show'])->name('rating.show');
 Route::get('rating/{rating_id}', [RatingKendaraanController::class, 'showId'])->name('rating.showId');
 
-//Transaksi Dompet
-Route::get('dompetku/saldo/{user_id}', [TransaksiDompetController::class, 'saldoDompet'])->name('transaksi.dompet');
 
 //Profile
 Route::post('user/profile/update/{user_id}', [UserController::class, 'update'])->name('user.update');

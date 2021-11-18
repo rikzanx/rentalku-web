@@ -109,14 +109,14 @@ class TransaksiController extends Controller
      */
     public function show($user_id)
     {
-        $transaksi = Transaksi::where('user_id', $user_id)->get();
+        $transaksi = Transaksi::where('user_id', $user_id)->with('user','kendaraan','pengemudiTransaksi')->get();
 
         return response($transaksi, 200);
     }
 
     public function showId($transaksi_id)
     {
-        $transaksi = Transaksi::where('id', $transaksi_id)->get();
+        $transaksi = Transaksi::where('id', $transaksi_id)->with('user','kendaraan','pengemudiTransaksi')->get();
 
         return response($transaksi, 200);
     }

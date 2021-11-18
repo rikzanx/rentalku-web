@@ -70,7 +70,7 @@ class PengemudiController extends Controller
      */
     public function show($id)
     {
-        $pengemudi = Pengemudi::findOrFail($id);
+        $pengemudi = Pengemudi::with('user', 'owner', 'pengemudiTransaksi')->findOrFail($id);
         if (is_null($pengemudi)) {
             return response()->json('Data not found', 404); 
         }
@@ -97,7 +97,7 @@ class PengemudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $pengemudi_id)
     {
         $validator = Validator::make($request->all(), 
         [
@@ -112,7 +112,7 @@ class PengemudiController extends Controller
         }
 
      
-        $pengemudi = Pengemudi::where('id',$id)->update([
+        $pengemudi = Pengemudi::where('id',$pengemudi_id)->update([
             'user_id' => $request->user_id,
             'user_id' => $request->user_id,
             'owner_id' => $request->owner_id,
