@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dompet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -32,6 +33,10 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
          ]);
+        $dompet = Dompet::create([
+            'user_id' => $user->id,
+            'saldo' => 0,
+        ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $response = [

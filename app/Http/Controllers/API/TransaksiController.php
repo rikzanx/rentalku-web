@@ -110,7 +110,7 @@ class TransaksiController extends Controller
     public function show($user_id)
     {
         $transaksi = Transaksi::where('user_id', $user_id)->with('user','kendaraan','pengemudiTransaksi')->get();
-
+        
         return response($transaksi, 200);
     }
 
@@ -118,7 +118,24 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::where('id', $transaksi_id)->with('user','kendaraan','pengemudiTransaksi')->get();
 
-        return response($transaksi, 200);
+        if(count($transaksi) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data Transaksi Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => 'Data Transaksi Tidak Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+
+        }
     }
 
     /**

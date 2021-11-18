@@ -18,8 +18,27 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::with('user')->get();
-        return response()->json($artikel, 200);
+        
+
+        if(count($artikel) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data Artikel Ditemukan',
+                "errors" => null,
+                "content" => $artikel,
+            ];
+            return response($response, 200);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => 'Data Artikel Tidak Ditemukan',
+                "errors" => null,
+                "content" => $artikel,
+            ];
+            return response($response, 200);
+
     }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -47,9 +66,16 @@ class ArtikelController extends Controller
             'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
+        
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $uploadFolder = "image/artikel/";
@@ -58,7 +84,6 @@ class ArtikelController extends Controller
         $image->move(public_path($uploadFolder), $imageName);
         $image_link = $uploadFolder.$imageName;
         
-
         $artikel = Artikel::create([
             'user_id' => $request->user_id,
             'judul' => $request->judul,
@@ -66,10 +91,27 @@ class ArtikelController extends Controller
             'image' => $image_link
          ]);
 
-         return response()->json([
-             "artikel" => $artikel,
-            "image" => URL::to($image_link)
-        ],201);
+        if ($artikel) {
+            $artikel->image_link = URL::to($artikel->image_link);
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil Menambah artikel',
+                "errors" => null,
+                "content" => $artikel,
+            ];
+            return response()->json($response,201);
+        } else {
+            
+            $response = [
+                "status" => "error",
+                "message" => 'Gagal Menambah artikel',
+                "errors" => null,
+                "content" => $artikel,
+            ];
+            return response()->json($response,200);
+
+        }
+        
     }
 
     /**
@@ -103,6 +145,7 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $validator = Validator::make($request->all(), 
         [
             'user_id' => 'required|integer',
@@ -113,7 +156,13 @@ class ArtikelController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $uploadFolder = "image/artikel/";
@@ -129,12 +178,32 @@ class ArtikelController extends Controller
             'image' => $image_link
          ]);
 
-        $artikel_data = Artikel::where('id', $id)->get();
+         if ($artikel){
+            $artikel_data = Artikel::where('id', $id)->get();
+             $response = [
+                 "status" => "success",
+                 "message" => 'Berhasil update artikel',
+                 "errors" => null,
+                 "content" => $artikel_data,
+             ];
 
-         return response()->json([
-             "artikel" => $artikel_data,
-            "image" => URL::to($image_link)
-        ],201);
+             
+             return response()->json([
+                 "response" => $response,
+                "image" => URL::to($image_link)],201);
+         }
+
+         else {
+        $response = [
+            "status" => "gagal",
+            "message" => 'gagal update artikel',
+            "errors" => null,
+            "content" => $artikel,
+        ];
+        
+        }
+
+        
     }
 
     /**
@@ -143,10 +212,29 @@ class ArtikelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Artikel $artikel)
+    public function destroy(Artikel $artikel, $id)
     {
-        $artikel->delete();
-
-        return response()->json("Data berhasil dihapus");
+        $transaksi = Artikel::findOrFail($id);
+        
+        $response = [
+            "status" => "deleted",
+            "message" => 'Artikel berhasil dihapus',
+            "errors" => null,
+            "content" => $artikel,
+        ];
+        return response()->json($response, 200);
+        
+        if($response){
+            $transaksi->delete();
+        }else{
+            $response = [
+                "status" => "deleted",
+                "message" => 'Artikel gagal dihapus',
+                "errors" => null,
+                "content" => $artikel,
+            ];
+            return response()->json($response, 200);
+        }
+      
     }
 }

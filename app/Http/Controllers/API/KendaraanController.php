@@ -53,19 +53,30 @@ class KendaraanController extends Controller
     {
         $validator = Validator::make($request->all(), 
         [
-            'name' => 'required',
             'user_id' => 'required|integer',
             'kategori_id' => 'required|integer',
-            'nopol' => 'required',
+            'name' => 'required',
+            'kota' => 'required',
             'seat' => 'required',
+            'nopol' => 'required',
             'harga' => 'required|integer',
             'tahun' => 'required|integer',
+            'transmisi' => 'required',
+            'mesin' => 'required',
+            'warna' => 'required',
+            'supir' => 'required',
             'image_link' => 'required|image:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $uploadFolder = "image/car/";
@@ -78,18 +89,39 @@ class KendaraanController extends Controller
         $kendaraan = Kendaraan::create([
             'user_id' => $request->user_id,
             'kategori_id' => $request->kategori_id,
-            'name' => $request->name,
+            'name' =>  $request->name,
+            'kota' =>  $request->kota,
+            'seat' =>  $request->seat,
             'nopol' => $request->nopol,
-            'seat' => $request->seat,
-            'harga' => $request->harga,
-            'tahun' => $request->tahun,
-            'image_link' => $image_link
+            'harga' =>  $request->harga,
+            'tahun' =>  $request->tahun,
+            'transmisi' =>  $request->transmisi,
+            'mesin' =>  $request->mesin,
+            'warna' =>  $request->warna,
+            'supir' =>  $request->supir,
+            'image_link' => $image_link,
          ]);
+         if($kendaraan){ //cek apakah sukses create 
+            //jika sukses
+            $kendaraan->image_link = URL::to($kendaraan->image_link);
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil Menambah kendaraan',
+                "errors" => null,
+                "content" => $kendaraan,
+            ];
+            return response()->json($response,201);
 
-         return response()->json([
-             "kendaraan" => $kendaraan,
-            "image_link" => URL::to($image_link)
-        ],201);
+         }else{
+             //jika gagal
+             $response = [
+                "status" => "error",
+                "message" => 'Gagal Menambah kendaraan',
+                "errors" => null,
+                "content" => $kendaraan,
+            ];
+            return response()->json($response,200);
+         }
     }
 
     /**
