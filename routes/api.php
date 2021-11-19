@@ -59,7 +59,7 @@ Route::group(['prefix' => 'message'], function () {
 //Kendaraan
 Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('api.kendaraan');
 Route::post('/kendaraan/store', [KendaraanController::class, 'store'])->name('api.kendaraan.store');
-Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'edit'])->name('api.kendaraan.update');
+Route::post('/kendaraan/update/{id}', [KendaraanController::class, 'update'])->name('api.kendaraan.update');
 Route::delete('/kendaraan/destroy/{id}', [KendaraanController::class, 'destroy'])->name('api.kendaraan.destroy');
 
 //Pengemudi

@@ -200,6 +200,8 @@ class ArtikelController extends Controller
             "errors" => null,
             "content" => $artikel,
         ];
+
+        return response()->json($response, 201);
         
         }
 

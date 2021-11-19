@@ -11,13 +11,28 @@ class DompetkuController extends Controller
 {
     public function show($id)
     {
-        $dompet = Dompet::with('user', 'transaksiDompet')->findOrFail($id);
-        if (is_null($dompet)) {
-            return response()->json('Data not found', 404); 
-        }
 
-        return response()->json($dompet, 200);
+        $dompet = Dompet::with('user', 'transaksiDompet')->findOrFail($id);
+        if(count([$dompet]) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data Dompet Ditemukan',
+                "errors" => null,
+                "content" => $dompet,
+            ];
+            return response($response, 200);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => 'Data dompet Tidak Ditemukan',
+                "errors" => null,
+                "content" => $dompet,
+            ];
+            return response($response, 200);
     }
+    }
+    
+    
 
     public function update(Request $request, $id)
     {
@@ -29,7 +44,13 @@ class DompetkuController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
      
@@ -38,9 +59,30 @@ class DompetkuController extends Controller
             'saldo' => $request->saldo
          ]);
 
-         $dompet_data = Dompet::where('id',$id)->get();
-         return response()->json([
-             "dompet" => $dompet_data
-        ],201);
+        if ($pengemudi) {
+            $dompet_data = Dompet::where('id',$id)->get();
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil update dompet',
+                "errors" => null,
+                "content" => $dompet_data,
+            ];  
+
+            return response()->json($response, 200);
+        }
+
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'gagal update artikel',
+                "errors" => null,
+                "content" => $pengemudi,
+            ];
+
+        return response()->json($response, 201);    
+        }
+
+
+         
     }
 }

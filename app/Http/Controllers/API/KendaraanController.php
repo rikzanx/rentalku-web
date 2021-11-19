@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kendaraan;
 use Validator;
+use App\Models\Kendaraan;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 
@@ -15,23 +15,32 @@ class KendaraanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $kategori = request()->kategori_id;
-        $tahun = request()->tahun;
-        $filter_count = count($request->all());
-        if($filter_count > 0){
+        $kendaraan = Kendaraan::with('user','kategori',
+        'transaksi','ratingKendaraan')->get();
 
-            $kendaraan = Kendaraan::with('user','kategori','transaksi','ratingKendaraan')->orWhere('kategori_id', $kategori)->orWhere('tahun', $tahun)->get();
-        }else{
-            $kendaraan = Kendaraan::with('user')->get();
+        if(count([$kendaraan]) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data kendaraan Ditemukan',
+                "errors" => null,
+                "content" => $kendaraan,
+            ];
+            return response($response, 200);
+            
         }
-        foreach($kendaraan as $k){
-            $k->image_link_server = URL::to($k->image_link);
+        else{
+            $response = [
+                "status" => "gagal",
+                "message" => 'Data kendaraan tidak Ditemukan',
+                "errors" => null,
+                "content" => $kendaraan,
+            ];
+            return response($response, 200);
         }
-        
-        return response()->json($kendaraan, 200);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -141,7 +150,7 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,Request $request)
+    public function update($id,Request $request)
     {
         $validator = Validator::make($request->all(), 
         [
@@ -157,7 +166,13 @@ class KendaraanController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $uploadFolder = "image/car/";
@@ -178,11 +193,28 @@ class KendaraanController extends Controller
             'image_link' => $image_link
          ]);
 
-         $kendaraan_data = Kendaraan::where('id',$id)->get();
-         return response()->json([
-             "kendaraan" => $kendaraan_data,
-            "image_link" => URL::to($image_link)
-        ],201);
+        if ($kendaraan) {
+            $kendaraan_data = Kendaraan::where('id',$id)->get();
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil update kendaraan',
+                "errors" => null,
+                "content" => $kendaraan_data,
+            ];
+
+            return response()->json([
+                "response" => $response,
+               "image" => URL::to($image_link)],201);
+        } else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'gagal update kendaraan',
+                "errors" => null,
+                "content" => $kendaraan,
+            ];
+    
+            return response()->json($response, 201);
+        }
     }
 
     /**
@@ -192,7 +224,7 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         
     }
@@ -207,12 +239,27 @@ class KendaraanController extends Controller
     {
         $kendaraan = Kendaraan::findOrFail($id);
         if($kendaraan){
+
+            $response = [
+                "status" => "deleted",
+                "message" => 'Kendaraan berhasil dihapus',
+                "errors" => null,
+                "content" => $kendaraan
+            ];  
+    
+            return response()->json($response, 200);
             $kendaraan->delete();
         }else{
-            return response()->json("Data gagal di hapus");
+            $response = [
+                "status" => "deleted",
+                "message" => 'Kendaraan gagal dihapus',
+                "errors" => null,
+                "content" => $kendaraan
+            ];  
+    
+            return response()->json($response, 200);
         }
         
 
-        return response()->json("Data berhasil dihapus");
     }
 }

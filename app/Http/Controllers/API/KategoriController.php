@@ -19,6 +19,25 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::all();
 
+        if (count($kategori) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => 'Data Kategori Ditemukan',
+                "errors" => null,
+                "content" => $kategori,
+            ];
+            return response($response, 200);
+        } else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'Data kategori tidak ada',
+                "errors" => null,
+                "content" => $kategori,
+            ];
+            return response($response, 200);
+        }
+        
+
         return response()->json($kategori, 200);
     }
 
@@ -47,18 +66,39 @@ class KategoriController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $kategori = Kategori::create([
             'name' =>$request->name
         ]);
-        $response = [
-            "data" => $kategori,
-            "status" => "success",
-            "message"  => "Data Success created"
-        ];
-        return response()->json($response,201);
+
+        if ($kategori) {
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil menambahkan kategori',
+                "errors" => null,
+                "content" => $kategori,
+            ];
+            return response()->json($response,200);
+        }
+
+        else {
+            $response = [
+                "status" => "error",
+                "message" => 'Gagal Menambah kategori',
+                "errors" => null,
+                "content" => $kategori,
+            ];
+            return response()->json($response,200);
+        }
+
     }
 
     /**
@@ -99,36 +139,72 @@ class KategoriController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $kategori = Kategori::where('id', $id)->update([
             'name' => $request->name
         ]);
 
-        $kategori_data = Kategori::where('id', $id)->get();
+        if ($kategori) {
+            $kategori_data = Kategori::where('id', $id)->get();
+            $response = [
+                "status" => "sucess",
+                "message" => 'Berhasil diupdate',
+                "errors" => null,
+                "content" => $kategori_data,
+            ];
+            return response()->json($response,201);
+        }
 
-        return response()->json($kategori_data,201);
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'gagal update artikel',
+                "errors" => null,
+                "content" => $kategori,
+            ];
+    
+            return response()->json($response, 201);
+        }
+
+        
     }
 
     public function destroy($id)
     {
         $kategori = Kategori::findOrFail($id);
-        if($kategori){
-            $kategori->delete();
-        }else{
-            $response = [
-                "status" => "success",
-                "message" => "Data berhasil dihapus"
-            ];
-            return response()->json("Data gagal di hapus");
-        }
+        
+        
 
-        $response = [
-            "status" => "success",
-            "message" => "Data berhasil dihapus"
-        ];
-        return response()->json($response);
+        if ($kategori) {
+
+            $response = [
+                "status" => "deleted",
+                "message" => 'Kategori berhasil dihapus',
+                "errors" => null,
+                "content" => $kategori
+            ];  
+    
+            return response()->json($response, 200);
+            $kategori->delete();
+        } else {
+            $response = [
+                "status" => "deleted",
+                "message" => 'Kategori berhasil dihapus',
+                "errors" => null,
+                "content" => $kategori
+            ];  
+    
+            return response()->json($response, 200);
+        }
+        
     }
 
 }
