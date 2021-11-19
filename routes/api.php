@@ -16,6 +16,7 @@ use App\Http\Controllers\API\TransaksiController;
 use App\Http\Controllers\API\RatingMobilController;
 use App\Http\Controllers\API\UserMessageController;
 use App\Http\Controllers\API\RatingKendaraanController;
+use App\Http\Controllers\API\SliderController;
 use App\Http\Controllers\API\TransaksiDompetController;
 
 
@@ -118,12 +119,18 @@ Route::delete('/transaksi/delete/{transaksi_id}', [TransaksiController::class, '
 Route::get('transaksi/show/{user_id}', [TransaksiController::class, 'show'])->name('transaksi.show');
 
 //Rating Kendaraan
-Route::post('/rating/create', [RatingKendaraanController::class, 'store'])->name('rating.create');
-Route::post('/rating/update/{rating_id}', [RatingKendaraanController::class, 'update'])->name('rating.update');
-Route::delete('rating/delete/{rating_id}', [RatingKendaraanController::class, 'destroy'])->name('rating.destroy');
-Route::get('rating/all/{kendaraan_id}', [RatingKendaraanController::class, 'show'])->name('rating.show');
 Route::get('rating/{rating_id}', [RatingKendaraanController::class, 'showId'])->name('rating.showId');
+Route::get('rating/all/{kendaraan_id}', [RatingKendaraanController::class, 'show'])->name('rating.show');
+Route::post('/rating/create', [RatingKendaraanController::class, 'store'])->name('rating.create');
+Route::post('/rating/update/{id}', [RatingKendaraanController::class, 'update'])->name('rating.update');
+Route::delete('rating/delete/{rating_id}', [RatingKendaraanController::class, 'destroy'])->name('rating.destroy');
 
 
 //Profile
 Route::post('user/profile/update/{user_id}', [UserController::class, 'update'])->name('user.update');
+
+//Slider
+Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
+Route::post('slider/create', [SliderController::class, 'store'])->name('slider.create');
+Route::post('slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+Route::delete('slider/delete/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');

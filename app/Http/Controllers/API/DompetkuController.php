@@ -68,7 +68,7 @@ class DompetkuController extends Controller
                 "content" => $dompet_data,
             ];  
 
-            return response()->json($response, 200);
+            return response()->json($response, 201);
         }
 
         else {
@@ -82,7 +82,7 @@ class DompetkuController extends Controller
         return response()->json($response, 201);    
         }
 
-
+        
          
     }
 }

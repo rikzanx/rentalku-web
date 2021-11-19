@@ -238,17 +238,17 @@ class KendaraanController extends Controller
     public function destroy($id)
     {
         $kendaraan = Kendaraan::findOrFail($id);
-        if($kendaraan){
+        
+        $response = [
+            "status" => "deleted",
+            "message" => 'Kendaraan berhasil dihapus',
+            "errors" => null,
+            "content" => $kendaraan
+        ];  
 
-            $response = [
-                "status" => "deleted",
-                "message" => 'Kendaraan berhasil dihapus',
-                "errors" => null,
-                "content" => $kendaraan
-            ];  
-    
-            return response()->json($response, 200);
+        if($kendaraan){
             $kendaraan->delete();
+            return response()->json($response, 200);
         }else{
             $response = [
                 "status" => "deleted",

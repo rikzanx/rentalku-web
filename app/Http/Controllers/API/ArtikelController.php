@@ -230,7 +230,7 @@ class ArtikelController extends Controller
             $transaksi->delete();
         }else{
             $response = [
-                "status" => "deleted",
+                "status" => "failed",
                 "message" => 'Artikel gagal dihapus',
                 "errors" => null,
                 "content" => $artikel,

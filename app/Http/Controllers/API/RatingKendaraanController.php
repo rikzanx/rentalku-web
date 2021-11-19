@@ -48,7 +48,13 @@ class RatingKendaraanController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
 
@@ -60,7 +66,28 @@ class RatingKendaraanController extends Controller
             
          ]);
 
-         return response()->json($rating,201);
+         if($rating) {
+             $response = [
+                 "status" => "success",
+                 "message" => "Berhasil menambahkan rating",
+                 "errors" => null,
+                "content" => $rating
+             ];
+             
+             return response()->json($response, 201);
+         }
+         
+         else {
+
+            $response = [
+                "status" => "gagal",
+                "message" => "gagal menambahkan rating",
+                "errors" => null,
+               "content" => $rating
+            ];
+            
+            return response()->json($response, 201);
+         }
     }
 
     /**
@@ -72,15 +99,49 @@ class RatingKendaraanController extends Controller
     public function show($kendaraan_id)
     {
         $rating = RatingKendaraan::where('kendaraan_id', $kendaraan_id)->with('user','kendaraan')->get();
-
+        
+        if (count([$rating]) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => 'Data Rating Kendaraan Ditemukan',
+                "errors" => null,
+                "content" => $rating,
+            ];
+            return response($response, 200);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => 'Data Rating Kendaraan Tidak Ditemukan',
+                "errors" => null,
+                "content" => $rating,
+            ];
+            return response($response, 200);
+        
         return response($rating, 200);
     }
+}
 
     public function showId($rating_id)
     {
-        $rating = RatingKendaraan::get();
-        
-        return response($rating, 200);
+        $rating = RatingKendaraan::with('user','kendaraan')->get();
+
+        if(count([$rating]) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data rating by id Ditemukan',
+                "errors" => null,
+                "content" => $rating,
+            ];
+            return response($response, 200);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => 'Data rating by id Tidak Ditemukan',
+                "errors" => null,
+                "content" => $rating,
+            ];
+            return response($response, 200);
+    }
     }
 
     /**
@@ -113,7 +174,13 @@ class RatingKendaraanController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
 
@@ -124,8 +191,29 @@ class RatingKendaraanController extends Controller
             'review' => $request->review
             
          ]);
+         if ($rating) {
+             $rating_data = RatingKendaraan::where('id', $id)->get();
+             $response = [
+                "status" => "success",
+                "message" => 'Berhasil update dompet',
+                "errors" => null,
+                "content" => $rating_data,
+            ];  
 
-         $ratingData = RatingKendaraan::where('id', $id)->get();
+            return response()->json($response, 201);
+         }
+
+         else {
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil update dompet',
+                "errors" => null,
+                "content" => $rating,
+            ];  
+
+            return response()->json($response, 201);
+         }
+
 
     }
 
@@ -138,13 +226,28 @@ class RatingKendaraanController extends Controller
     public function destroy($id)
     {
         $rating = RatingKendaraan::findOrFail($id);
-        if($rating){
+        
+        $response = [
+            "status" => "deleted",
+            "message" => 'rating berhasil dihapus',
+            "errors" => null,
+            "content" => $rating
+        ];
+
+        return response()->json($response, 200);
+
+        if ($response) {
             $rating->delete();
-        }else{
-            return response()->json("Data gagal di hapus");
+        } else {
+            $response = [
+                "status" => "failed",
+                "message" => 'rating gagal dihapus',
+                "errors" => null,
+                "content" => $rating
+            ];
+    
+            return response()->json($response, 200);
         }
         
-
-        return response()->json("Data berhasil dihapus");
     }
 }
