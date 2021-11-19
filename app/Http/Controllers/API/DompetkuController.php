@@ -54,12 +54,12 @@ class DompetkuController extends Controller
         }
 
      
-        $pengemudi = Dompet::where('id',$id)->update([
+        $dompet = Dompet::where('id',$id)->update([
             'user_id' => $request->user_id,
             'saldo' => $request->saldo
          ]);
 
-        if ($pengemudi) {
+        if ($dompet) {
             $dompet_data = Dompet::where('id',$id)->get();
             $response = [
                 "status" => "success",
@@ -76,7 +76,7 @@ class DompetkuController extends Controller
                 "status" => "gagal",
                 "message" => 'gagal update artikel',
                 "errors" => null,
-                "content" => $pengemudi,
+                "content" => $dompet,
             ];
 
         return response()->json($response, 201);    

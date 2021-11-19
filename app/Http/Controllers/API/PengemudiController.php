@@ -16,6 +16,27 @@ class PengemudiController extends Controller
      */
     public function index()
     {
+        $pengemudi = Pengemudi::with('user', 'owner', 'pengemudiTransaksi')->get();
+
+        if(count([$pengemudi]) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => "Data pengemudi ditemukan",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
+        }
+
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => "Pengemudi hilang",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
+        }
         
     }
 
@@ -71,11 +92,25 @@ class PengemudiController extends Controller
     public function show($id)
     {
         $pengemudi = Pengemudi::with('user', 'owner', 'pengemudiTransaksi')->findOrFail($id);
-        if (is_null($pengemudi)) {
-            return response()->json('Data not found', 404); 
+        if(count([$pengemudi]) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => "Data pengemudi ditemukan",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
         }
 
-        return response()->json($pengemudi, 200);
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => "Pengemudi hilang",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
+        }
     }
 
     /**
@@ -108,7 +143,13 @@ class PengemudiController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
      
@@ -119,10 +160,27 @@ class PengemudiController extends Controller
             'harga' => $request->harga
          ]);
 
-         $pengemudi_data = Pengemudi::where('id',$id)->get();
-         return response()->json([
-             "pengemudi" => $pengemudi_data
-        ],201);
+         if ($pengemudi) {
+            $pengemudi_data = Pengemudi::where('id',$pengemudi_id)->get();
+            $response = [
+                "status" => "success",
+                "message" => "berhasil update pengemudi",
+                "error" => null,
+                "content" => $pengemudi_data
+            ];
+
+            return response()->json($response, 200);
+         } else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'gagal update artikel',
+                "errors" => null,
+                "content" => $pengemudi,
+            ];
+
+        return response()->json($response, 201);    
+         }
+
     }
 
     /**
@@ -134,13 +192,26 @@ class PengemudiController extends Controller
     public function destroy(Pengemudi $pengemudi, $id)
     {
         $pengemudi = Pengemudi::findOrFail($id);
-        if($pengemudi){
+
+        $response = [
+            "status" => "deleted",
+            "message" => "Pengemudi berhasil dihapus",
+            "error" => null,
+            "content" => "$pengemudi"
+        ];
+        return response()->json($response, 200);
+
+        if ($response) {
             $pengemudi->delete();
-        }else{
-            return response()->json("Data gagal di hapus");
+        } else {
+            $response = [
+                "status" => "deleted",
+                "message" => 'Pengemudi gagal dihapus',
+                "errors" => null,
+                "content" => $pengemudi,
+            ];
+            return response()->json($response, 200);
         }
         
-
-        return response()->json("Data berhasil dihapus");
     }
 }
