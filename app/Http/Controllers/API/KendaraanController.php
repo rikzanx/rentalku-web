@@ -237,7 +237,7 @@ class KendaraanController extends Controller
      */
     public function destroy($id)
     {
-        $kendaraan = Kendaraan::findOrFail($id);
+        $kendaraan = Kendaraan::first($id);
         
         $response = [
             "status" => "deleted",

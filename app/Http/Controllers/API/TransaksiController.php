@@ -18,9 +18,28 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::get();
+        $transaksi = Transaksi::with('user', 'kendaraan', 'pengemudiTransaksi')->get();
 
-        return response()->json($transaksi, 200);
+        if (count([$transaksi]) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => 'Data Transaksi Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+        }
+
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'Data transaksi tidak Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+        }
+;
     }
 
     /**
@@ -52,7 +71,13 @@ class TransaksiController extends Controller
 
         if($validator->fails())
         {
-            return response()->json($validator->errors());
+            $response = [
+                "status" => "error",
+                "message" => 'Kolom belum diisi',
+                "errors" => $validator->errors(),
+                "content" => null,
+            ];
+            return response()->json($response,200);
         }
 
         $kendaraan = Kendaraan::where('id', $request->kendaraan_id)->first();
@@ -111,7 +136,25 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::where('user_id', $user_id)->with('user','kendaraan','pengemudiTransaksi')->get();
         
-        return response($transaksi, 200);
+        if(count([$transaksi]) > 0){
+            $response = [
+                "status" => "success",
+                "message" => 'Data transaksi Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+            
+        }
+        else{
+            $response = [
+                "status" => "gagal",
+                "message" => 'Data transaksi tidak Ditemukan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+            return response($response, 200);
+        }
     }
 
     public function showId($transaksi_id)
@@ -192,11 +235,29 @@ class TransaksiController extends Controller
             'long' => $request->long
         ]);
 
-        $transaksiData = Transaksi::where('id', $id)->get();
+        if ($transaksi) {
+            $transaksiData = Transaksi::where('id', $id)->get();
 
+            $response = [
+                "status" => "success",
+                "message" => 'Berhasil update kendaraan',
+                "errors" => null,
+                "content" => $transaksiData,
+            ];
+
+            return response()->json($response);
+
+        } else {
+            $response = [
+                "status" => "gagal",
+                "message" => 'gagal update kendaraan',
+                "errors" => null,
+                "content" => $transaksi,
+            ];
+    
+            return response()->json($response, 201);
+        }
         
-
-         return response()->json($transaksiData,201);
     }
 
     /**
@@ -207,15 +268,29 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        $transaksi = Transaksi::findOrFail($id);
+        $transaksi = Transaksi::first($id);
+
+        $response = [
+            "status" => "deleted",
+            "message" => 'Transaksi berhasil dihapus',
+            "errors" => null,
+            "content" => $transaksi
+        ];
+
         if($transaksi){
             $transaksi->delete();
+            return response()->json($response, 200);
         }else{
-            return response()->json("Data gagal di hapus");
+            $response = [
+                "status" => "deleted",
+                "message" => 'Transaksi gagal dihapus',
+                "errors" => null,
+                "content" => $transaksi
+            ];
+
+            return response()->json($response, 200);
         }
         
-
-        return response()->json("Data berhasil dihapus");
     }
 
     

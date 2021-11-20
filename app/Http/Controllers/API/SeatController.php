@@ -118,7 +118,7 @@ class SeatController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = KategoriSeat::findOrFail($id);
+        $kategori = KategoriSeat::first($id);
         if($kategori){
             $kategori->delete();
         }else{
