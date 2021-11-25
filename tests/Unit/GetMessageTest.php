@@ -16,6 +16,6 @@ class GetMessageTest extends TestCase
         $value=[
             'room_id' => 1
         ];
-        $this->get(route('message.byroom'), $value)->assertStatus(200);
+        $this->get(route('api.message.byroom'), $value)->assertStatus(200);
     }
 }

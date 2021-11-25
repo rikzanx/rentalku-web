@@ -18,6 +18,6 @@ class SendMessageTest extends TestCase
             'room_id' => '1',
             'message' => 'Pesan test'
         ];
-        $this->post(route('message.send'), $value)->assertStatus(201);
+        $this->post(route('api.message.send'), $value)->assertStatus(201);
     }
 }

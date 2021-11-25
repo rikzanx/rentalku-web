@@ -112,6 +112,37 @@ class PengemudiController extends Controller
             return response($response, 200);
         }
     }
+    
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_by_owner($owner_id)
+    {
+        $pengemudi = Pengemudi::with('user', 'owner', 'pengemudiTransaksi')->where('owner_id',$owner_id)->get();
+        if(count([$pengemudi]) > 0) {
+            $response = [
+                "status" => "success",
+                "message" => "Data pengemudi ditemukan",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
+        }
+
+        else {
+            $response = [
+                "status" => "gagal",
+                "message" => "Pengemudi hilang",
+                "error" => null,
+                "content" => $pengemudi
+            ];
+            return response($response, 200);
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.

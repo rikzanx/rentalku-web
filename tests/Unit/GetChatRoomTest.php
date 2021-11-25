@@ -13,6 +13,6 @@ class GetChatRoomTest extends TestCase
      */
     public function test_example()
     {
-        $this->get(route('message.getall'))->assertStatus(200);
+        $this->get(route('api.message.getall'))->assertStatus(200);
     }
 }

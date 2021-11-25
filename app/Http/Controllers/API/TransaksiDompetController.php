@@ -64,8 +64,10 @@ class TransaksiDompetController extends Controller
             'bank' => $request->bank,
             'no_rek' => $request->no_rek,
             'status' => $request->status
-            
          ]);
+         $dompet = TransaksiDompet::where('user_id', $user_id)
+            ->selectRaw("SUM(jumlah) as jumlah")->groupBy('user_id')->with('user','dompet')
+            ->get();
 
          return response()->json([
              "transaksi_dompet" => $transaksiDompet

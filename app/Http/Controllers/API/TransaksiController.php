@@ -205,16 +205,16 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($transaksi_id)
     {
-        $transaksi = Transaksi::findOrFail($id);
+        $transaksi = Transaksi::where('id',$transaksi_id)->first();
+        
         if($transaksi){
             $transaksi->delete();
         }else{
             return response()->json("Data gagal di hapus");
         }
         
-
         return response()->json("Data berhasil dihapus");
     }
 

@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
@@ -42,6 +43,17 @@
                         <li class="nav-item">
                             <a class="nav-link nav-left {{ Request::is('/dompet') ? 'active' : '' }}" href="">DompetKu</a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link nav-left {{ Request::is('/unitku') ? 'active' : '' }}" href="">UnitKu</a>
+                            </li>
+                        @guest
+                        @else
+                            @if(Auth::user()->role)
+                            <li class="nav-item">
+                                <a class="nav-link nav-left {{ Request::is('/unitku') ? 'active' : '' }}" href="">UnitKu</a>
+                            </li>
+                            @endif
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -269,7 +281,7 @@
                     e.preventDefault();
                     data=$('#send-message').serializeArray();
                     $.ajax({
-                        url:"{{ route('message.send') }}",
+                        url:"{{ route('api.message.send') }}",
                         method:"POST", //First change type to method here
                         data:data,
                         success:function(response) {
