@@ -225,7 +225,7 @@ class RatingKendaraanController extends Controller
      */
     public function destroy($id)
     {
-        $rating = RatingKendaraan::findOrFail($id);
+        $rating = RatingKendaraan::first($id);
         
         $response = [
             "status" => "deleted",

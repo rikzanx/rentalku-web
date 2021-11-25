@@ -222,7 +222,7 @@ class PengemudiController extends Controller
      */
     public function destroy(Pengemudi $pengemudi, $id)
     {
-        $pengemudi = Pengemudi::findOrFail($id);
+        $pengemudi = Pengemudi::first($id);
 
         $response = [
             "status" => "deleted",

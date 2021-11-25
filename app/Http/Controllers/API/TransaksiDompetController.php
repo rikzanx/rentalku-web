@@ -173,7 +173,7 @@ class TransaksiDompetController extends Controller
      */
     public function destroy(TransaksiDompet $transaksiDompet,$id)
     {
-        $transaksiDompet = TransaksiDompet::findOrFail($id);
+        $transaksiDompet = TransaksiDompet::first($id);
         if($transaksiDompet){
             $transaksiDompet->delete();
         }else{

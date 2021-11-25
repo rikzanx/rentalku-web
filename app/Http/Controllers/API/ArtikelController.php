@@ -216,7 +216,7 @@ class ArtikelController extends Controller
      */
     public function destroy(Artikel $artikel, $id)
     {
-        $transaksi = Artikel::findOrFail($id);
+        $transaksi = Artikel::first($id);
         
         $response = [
             "status" => "deleted",

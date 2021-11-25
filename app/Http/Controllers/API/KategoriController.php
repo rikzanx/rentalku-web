@@ -179,7 +179,7 @@ class KategoriController extends Controller
 
     public function destroy($id)
     {
-        $kategori = Kategori::findOrFail($id);
+        $kategori = Kategori::first($id);
         
         
 
